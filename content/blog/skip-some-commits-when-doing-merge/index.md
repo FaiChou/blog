@@ -1,8 +1,8 @@
 ---
 title: "Skip Some Commits When Doing Merge"
 date: "2019-03-05"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "📌"
 ---
 
 <img src="https://raw.githubusercontent.com/FaiChou/faichou.github.io/master/img/1551792746051.png" width="600" />

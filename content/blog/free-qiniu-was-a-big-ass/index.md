@@ -1,8 +1,8 @@
 ---
 title: "七牛免费之坑"
 date: "2018-10-09"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🐮"
 ---
 
 昨天刚更新完博客, 今天就遇到了「免费测试域名」被回收♻️.

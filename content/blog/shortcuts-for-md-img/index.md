@@ -1,8 +1,8 @@
 ---
 title: "快速生成markdown图片地址"
 date: "2018-10-11"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "📇"
 ---
 
 ## 需求

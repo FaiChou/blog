@@ -1,9 +1,9 @@
 ---
 title: "Cors and Cookies"
 date: "2018-12-25"
-category: "Dev"
+category: "dev"
 description: "web cookies on chrome"
-emoji: "👨🏼‍💻"
+emoji: "🍪"
 ---
 
 

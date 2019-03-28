@@ -1,8 +1,8 @@
 ---
 title: "vim cheatsheet"
 date: "2018-06-04"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "✌🏻"
 ---
 
 ## 目录

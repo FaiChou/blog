@@ -1,7 +1,7 @@
 ---
 title: "Readings"
 date: "2018-04-22"
-category: "Life"
+category: "life"
 emoji: "📗"
 ---
 

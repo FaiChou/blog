@@ -1,8 +1,8 @@
 ---
 title: "shell cheatsheet"
 date: "2018-06-22"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🎉"
 ---
 
 ## 执行shell

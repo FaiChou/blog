@@ -1,8 +1,8 @@
 ---
 title: "Find Unused Assets in Project"
 date: "2018-10-22"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "⚙️"
 ---
 
 

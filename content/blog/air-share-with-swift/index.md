@@ -1,8 +1,7 @@
 ---
-title: "airshare-with-swift"
+title: "airshare with swift"
 date: "2017-12-11"
-category: "Dev"
-description: "swift shell"
+category: "dev"
 emoji: "👨🏼‍💻"
 ---
 

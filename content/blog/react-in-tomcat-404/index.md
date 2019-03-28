@@ -1,8 +1,8 @@
 ---
 title: "SPA放到tomcat刷新404"
 date: "2018-11-15"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🌚"
 ---
 
 ## 起因

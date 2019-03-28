@@ -1,8 +1,8 @@
 ---
 title: "碰了一个formdata的壁"
 date: "2018-11-13"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "❄️"
 ---
 
 ## 问题

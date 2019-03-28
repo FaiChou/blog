@@ -1,8 +1,8 @@
 ---
 title: "字符串编码"
 date: "2018-01-03"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🐳"
 ---
 
 由于历史原因, 字符在内存中的编码都是Unicode, 但是对于一些数字或英文字符, 那么用Unicode就会严重浪费空间和带宽,所以在硬盘上或网络传输上的字符编码大多都是utf-8的.

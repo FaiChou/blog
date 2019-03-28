@@ -1,8 +1,8 @@
 ---
 title: "create a react native image previewer"
 date: "2018-05-05"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🎯"
 ---
 
 ## [ImagePreviewer](https://github.com/FaiChou/ImagePreviewer) -- `A react native image previewer !`

@@ -1,8 +1,8 @@
 ---
 title: "python模块/包"
 date: "2017-11-24"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🐍"
 ---
 
 **关键字**: `python3`, `import`, `module vs package`, `sys.path`, `relative/absolute import`.

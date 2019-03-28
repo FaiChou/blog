@@ -1,9 +1,9 @@
 ---
 title: "安卓打包"
 date: "2018-11-28"
-category: "Dev"
+category: "dev"
 description: "android package summary"
-emoji: "👨🏼‍💻"
+emoji: "📱"
 ---
 
 ## 命令

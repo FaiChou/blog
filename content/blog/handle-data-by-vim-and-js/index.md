@@ -1,8 +1,8 @@
 ---
 title: "记一次数据处理"
 date: "2018-07-02"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🤬"
 ---
 
 一批[这样的数据](https://github.com/williambao/cities/blob/master/cities.json)

@@ -1,8 +1,8 @@
 ---
 title: "React Portal Tutorial"
 date: "2017-12-25"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🥦"
 ---
 
 ## Merry Xmas

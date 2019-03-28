@@ -1,8 +1,8 @@
 ---
 title: "Grid Layout"
 date: "2018-12-14"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "⛳️"
 ---
 
 ## Grid

@@ -1,8 +1,8 @@
 ---
 title: "Abandon China Shit Sources"
 date: "2017-10-10"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "😼"
 ---
 
 yarn, npm, rubygems源都被我更改/添加了淘宝/rubychina源，有些时候，挺方便的。但是考虑到已经将我的terminal代理了，并不需要通过改源来加速。

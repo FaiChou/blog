@@ -1,8 +1,8 @@
 ---
 title: "Git 速记"
 date: "2018-10-12"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "💥"
 ---
 
 一直想写 Git 的笔记, 但是 Git 知识点太零散了, 并且 Git 又太强大了, 常用/不常用操作随便搜索一下就可以在爆栈网上找到.

@@ -1,8 +1,8 @@
 ---
 title: "px em and rem"
 date: "2019-02-25"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🙈"
 ---
 
 ## 本篇其实是探讨 px, em, rem

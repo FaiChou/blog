@@ -1,9 +1,9 @@
 ---
 title: "协程在RN中的使用"
 date: "2018-05-29"
-category: "Dev"
+category: "dev"
 description: "react-native coroutine"
-emoji: "👨🏼‍💻"
+emoji: "🚴🏼‍♂️"
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 title: "Python装饰器"
 date: "2017-12-01"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🐍"
 ---
 
 

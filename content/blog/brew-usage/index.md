@@ -1,9 +1,9 @@
 ---
 title: "brew usage"
 date: "2018-12-31"
-category: "Dev"
+category: "dev"
 description: "common command"
-emoji: "👨🏼‍💻"
+emoji: "🍴"
 ---
 
 ## search

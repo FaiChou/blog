@@ -1,8 +1,8 @@
 ---
 title: "架设一架谷歌小飞机"
 date: "2018-10-16"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🕶"
 ---
 
 

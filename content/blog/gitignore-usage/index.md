@@ -1,8 +1,8 @@
 ---
 title: "gitignore递归排除某类文件夹"
 date: "2018-05-10"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "⛱"
 ---
 
 #### 问题描述

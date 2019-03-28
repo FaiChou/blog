@@ -1,8 +1,8 @@
 ---
 title: "Iterative-Development"
 date: "2018-07-26"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🧚🏻‍♂️"
 ---
 
 > **iOS Apprentice** page 320

@@ -1,8 +1,8 @@
 ---
 title: "Why Not RN"
 date: "2018-09-19"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "👣"
 ---
 
 RN的使用已经到了瓶颈, 劣势愈发明显.

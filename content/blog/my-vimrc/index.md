@@ -1,8 +1,8 @@
 ---
 title: "Vimrc"
 date: "2018-08-27"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "👊🏻"
 ---
 
 

@@ -1,8 +1,8 @@
 ---
 title: "mac启动项"
 date: "2018-10-08"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "💻"
 ---
 
 ## Login Items

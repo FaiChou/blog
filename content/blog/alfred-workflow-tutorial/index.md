@@ -1,9 +1,9 @@
 ---
 title: "Create Alfred Workflow"
 date: "2017-09-24"
-category: "Dev"
+category: "dev"
 description: "alfred workflow"
-emoji: "👨🏼‍💻"
+emoji: "🧤"
 ---
 
 

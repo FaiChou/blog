@@ -1,8 +1,8 @@
 ---
 title: "element-vs-component"
 date: "2019-01-07"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🌀"
 ---
 
 ## Element 和 Component

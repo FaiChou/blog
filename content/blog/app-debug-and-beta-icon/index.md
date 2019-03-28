@@ -1,9 +1,9 @@
 ---
 title: "App Debug and Beta Icon"
 date: "2018-05-19"
-category: "Dev"
+category: "dev"
 description: "dynamic create ios app debug*beta icons"
-emoji: "👨🏼‍💻"
+emoji: "🛠"
 ---
 
 <img src="https://raw.githubusercontent.com/FaiChou/faichou.github.io/master/img/qiniu/markdown/1526720735188.png" width="602"/>

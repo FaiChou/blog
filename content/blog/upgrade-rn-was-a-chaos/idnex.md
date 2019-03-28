@@ -1,8 +1,8 @@
 ---
 title: "升级RN的代价"
 date: "2018-05-19"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "🦋"
 ---
 
 ## ReactNative项目的version变化过程

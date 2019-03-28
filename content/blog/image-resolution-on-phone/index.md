@@ -1,8 +1,8 @@
 ---
 title: "Image resolution on phone"
 date: "2018-09-05"
-category: "Dev"
-emoji: "👨🏼‍💻"
+category: "dev"
+emoji: "👾"
 ---
 
 ## 图像简介
