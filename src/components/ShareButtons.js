@@ -74,13 +74,13 @@ const ShareButtons = ({ slug, title, emoji }) => {
         >
           f
         </ShareLink>
-        <ShareLink
+        {/* <ShareLink
           href={`http://b.hatena.ne.jp/add?mode=confirm&url=${pageUrl}`}
           style={{ fontSize: "19px" }}
           rel="nofllow"
         >
           B!
-        </ShareLink>
+        </ShareLink> */}
       </ShareLinks>
       <GitHubLink
         href={`https://github.com/faichou/blog/edit/master/content/blog${slug}index.md`}
