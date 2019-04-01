@@ -1,11 +1,11 @@
 ---
-title: "new blog"
+title: "new blog system"
 date: "2019-04-01"
 category: "life"
 emoji: "⛱"
 ---
 
-## 长啥样
+## 相貌
 
 ![look](1554126770.png)
 
