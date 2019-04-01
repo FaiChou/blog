@@ -5,7 +5,7 @@ module.exports = {
     description: `FaiChou's personal blog`,
     siteUrl: `http://faichou.space`,
     social: {
-      twitter: `FaiChou`
+      twitter: `faichou_zh`
     },
     categories: [
       {
