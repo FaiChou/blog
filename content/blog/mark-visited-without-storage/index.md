@@ -11,7 +11,7 @@ emoji: "📌"
 
 大脑一运转, 就可以猜到, 必定是将看的集数给记录下来, 于是去 `localStorage` 验证一下
 
-![localStorage](1554302083.png)
+![localStorage](1554302163.png)
 
 结果发现空空如也, 那么去其他可存储的地方 `(IndexedDB, WebSQL)` 看下, 结果都没有找到存储的地方.
 
