@@ -12,7 +12,7 @@ emoji: "🍉"
 p { font-size:2em; } // p
 .info { background:#ff0; } // class="info"
 p.info { background:#ff0; } // class="info" but in p
-p.info.error { color:#900; font-weight:bold; }
+p.info.error { color:#900; font-weight:bold; } // class="info error ..."
 #info { background:#ff0; } // id="info"
 p#info { background:#ff0; } // id="info" but in p
 
