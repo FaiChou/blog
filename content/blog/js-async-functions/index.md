@@ -13,10 +13,10 @@ function foo(msg) {
 }
 ```
 
-上面是个基本的异步函数.
+上面函数返回 `promise`
 
 
-可以用 `promise then` 来执行它:
+可以用 `then` 来获取 `resolve` 值:
 
 ```javascript
 const f = foo('f')
@@ -32,7 +32,28 @@ async function main() {
 }
 ```
 
-`promise then chain`:
+### onFulfilled returns a promise
+
+```javascript
+function resolveLater(resolve) {
+  setTimeout(function () {
+    resolve(10);
+  }, 1000);
+}
+var p1 = Promise.resolve('foo');
+var p2 = p1.then(function() {
+  // Return promise here, that will be resolved to 10 after 1 second
+  return new Promise(resolveLater);
+})
+p2.then(function(v) {
+  console.log('resolved', v);  // "resolved", 10
+})
+```
+
+> If `onFulfilled` returns a promise, the return value of `then` will be resolved/rejected by the promise.
+
+
+### promise then chain
 
 ```javascript
 foo('ff')
