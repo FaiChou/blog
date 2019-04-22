@@ -91,6 +91,16 @@ $ git push origin --delete feature/login # delete origin
 $ git fetch && git checkout new_branch # checkout remote branch
 ```
 
+Create branch based on old commit
+
+```bash
+$ git checkout 1a08cbf
+$ git branch new_branch
+
+$ git branch new_branch 1a08cbf # same above
+```
+
+
 ### Stash
 
 ```bash
@@ -215,6 +225,58 @@ $ git checkout master
 $ git merge dev # merge dev to master
 $ git branch -d dev
 ```
+
+### Rebase
+
+```bash
+[branch_name]$ git rebase # rebase current to branch.<branch_name>.remote
+```
+
+```
+          A---B---C topic
+         /
+    D---E---F---G master
+```
+
+```bash
+$ git rebase master
+$ git rebase master topic # same above
+```
+
+would be:
+
+```
+                  A'--B'--C' topic
+                 /
+    D---E---F---G master
+```
+
+
+#### Advanced
+
+```
+    o---o---o---o---o  master
+         \
+          o---o---o---o---o  next
+                           \
+                            o---o---o  topic
+```
+
+
+```bash
+$ git rebase --onto master next topic
+```
+
+would be:
+
+```
+    o---o---o---o---o  master
+        |            \
+        |             o'--o'--o'  topic
+         \
+          o---o---o---o---o  next
+```
+
 
 ### Revert
 
@@ -374,11 +436,44 @@ $ git rm -r --cached . && git add . # alias reignore
 ### workflow
 
 ```bash
-$ git add . && git ci -m "some work"
-$ git fetch
-$ git rebase
-$ git push
+$ git add . && git ci -m "some work" # a
+$ git fetch                          # b
+$ git rebase                         # c
+$ git push                           # d
 ```
+
+> **git rebase `<upstream>`**
+> If `<upstream>` is not specified, the upstream configured in branch.`<name>`.remote and branch.`<name>`.merge options will be used 
+
+after a:
+
+```
+--o--o--o--o`  HEAD -> master
+```
+
+after b:
+
+```
+--o--o--o--o`  HEAD -> master
+         \
+          \
+           o^  (origin/master, origin/HEAD)
+```
+
+after c:
+
+```
+     (origin/master, origin/HEAD)
+           |
+--o--o--o--o^--o` HEAD -> master
+```
+
+after d:
+
+```
+--o--o--o--o^--o` (HEAD -> master, origin/master)
+```
+
 
 ### Reference
 
