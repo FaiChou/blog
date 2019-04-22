@@ -33,9 +33,8 @@ And then the tree is like this:
 ## Solution 2 - rebase
 
 ```bash
-[bug]$ git branch temp 123473 # a
-[bug]$ git rebase --onto master 123471^ temp # b
-[bug]$ git rebase --onto master bug temp # same above
+[bug]$ git branch temp 123475 # a
+[bug]$ git rebase --onto master 123474^ temp # b
 [bug]$ git checkout master # c
 [master]$ git reset --hard temp # d
 ```
@@ -47,14 +46,14 @@ And then the tree is like this:
  o---o---o---o---o  master
          \
           o---o---o---o---o   bug
-                   \
-                    temp
+                           \
+                            temp
 ```
 
 #### after b:
 
 ```
-                   o`---o`---o` temp
+                   o`---o` temp
                   /
  o---o---o---o---o  master
          \
@@ -64,7 +63,7 @@ And then the tree is like this:
 #### after d:
 
 ```
- o---o---o---o---o---o`---o`---o`  HEAD temp, master
+ o---o---o---o---o---o`---o` HEAD -> master
          \
           o---o---o---o---o   bug
 ```
@@ -107,7 +106,7 @@ Now the tree is like this:
 ## Solution 5 - using patch
 
 ```bash
-[bug]$ git format-patch 123471^..123473 --stdout > ~/Downloads/part.patch
+[bug]$ git format-patch 123474^..123475 --stdout > ~/Downloads/part.patch
 [bug]$ git checkout master
 [master]$ git am --signoff < ~/Downloads/part.patch
 ```
