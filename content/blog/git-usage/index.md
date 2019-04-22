@@ -111,8 +111,9 @@ stash@{1}: WIP on master: c264051 Revert "added file_size"
 stash@{2}: WIP on master: 21d80a5 added number to log
 
 $ git stash pop # first in last out (move out stash)
-$ git stash apply
-$ git stash drop # delete last
+
+$ git stash apply # Like pop, but do not remove the state from the stash list.
+$ git stash drop # delete last, these two equal to pop
 ```
 
 ### Log
