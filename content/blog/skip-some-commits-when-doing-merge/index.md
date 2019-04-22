@@ -33,10 +33,40 @@ And then the tree is like this:
 ## Solution 2 - rebase
 
 ```bash
-[bug]$ git branch temp 123473
-[bug]$ git rebase --onto master 123471^ temp 
-[bug]$ git checkout master
-[master]$
+[bug]$ git branch temp 123473 # a
+[bug]$ git rebase --onto master 123471^ temp # b
+[bug]$ git rebase --onto master bug temp # same above
+[bug]$ git checkout master # c
+[master]$ git reset --hard temp # d
+```
+
+
+#### after a:
+
+```
+ o---o---o---o---o  master
+         \
+          o---o---o---o---o   bug
+                   \
+                    temp
+```
+
+#### after b:
+
+```
+                   o`---o`---o` temp
+                  /
+ o---o---o---o---o  master
+         \
+          o---o---o---o---o   bug
+```
+
+#### after d:
+
+```
+ o---o---o---o---o---o`---o`---o`  HEAD temp, master
+         \
+          o---o---o---o---o   bug
 ```
 
 ## Solution 3 - rebase -i
