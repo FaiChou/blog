@@ -36,6 +36,9 @@ $ git add -A # same as add .
 ```bash
 $ rm abc
 $ git add abc # or git rm abc
+$ touch new_file
+$ git add new_file
+$ git rm --cached new_file # make new_file from staged to unstaged
 ```
 
 ### Status
@@ -250,11 +253,23 @@ $ git commit -m "revert3"
 ### reset
 
 ```bash
-$ git reset # opposite of `git add`
+$ git reset # opposite of `git add` (only file change, if file add, using `git rm --cached`)
 ```
 
 ```bash
 $ git reset --soft HEAD^ # take off last commit
+```
+
+```bash
+$ git reset --hard HEAD^
+```
+
+same above:
+
+```bash
+$ git reset --soft HEAD^
+$ git reset HEAD .
+$ git checkout .
 ```
 
 ```bash
