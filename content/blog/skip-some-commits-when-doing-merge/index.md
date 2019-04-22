@@ -30,7 +30,16 @@ And then the tree is like this:
    
 ```
 
-## Solution 2 - rebase -i
+## Solution 2 - rebase
+
+```bash
+[bug]$ git branch temp 123473
+[bug]$ git rebase --onto master 123471^ temp 
+[bug]$ git checkout master
+[master]$
+```
+
+## Solution 3 - rebase -i
 
 ```bash
 [dev]$ git checkout -b bug-to-merge-into-master
@@ -44,7 +53,7 @@ p 123475
 [master]$ git merge bug-to-merge-into-master
 ```
 
-## Solution 3 - merge + revert
+## Solution 4 - merge + revert
 
 ```bash
 [master]$ git merge dev
@@ -65,9 +74,18 @@ Now the tree is like this:
                           merge   revert
 ```
 
+## Solution 5 - using patch
+
+```bash
+[bug]$ git format-patch 123471^..123473 --stdout > ~/Downloads/part.patch
+[bug]$ git checkout master
+[master]$ git am --signoff < ~/Downloads/part.patch
+```
+
 
 ## Reference
 
 - [git-scm-git-cherry-pick](https://git-scm.com/docs/git-cherry-pick)
 - [stackoverflow-727994](https://stackoverflow.com/questions/727994/git-skipping-specific-commits-when-merging)
-
+- [patch](https://www.devroom.io/2009/10/26/how-to-create-and-apply-a-patch-with-git/)
+- [cherry-picking-range-of-git-commits](https://feeding.cloud.geek.nz/posts/cherry-picking-range-of-git-commits/)

@@ -106,11 +106,22 @@ $ git stash drop # delete last
 
 ```bash
 $ git lg   # alias lg for log
-$ git lg -p
+$ git lg -p # with patch
 
 $ git fetch
 $ git lg origin/master # show origin master log
 ```
+
+```
+lg = log --graph --abbrev-commit --decorate --all --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%     aD%C(dim white) - %an%C(reset) %C(bold green)(%ar)%C(reset)%C(bold yellow)%d%C(reset)%n %C(white)%s%C(reset)'
+```
+
+### Log line history
+
+```bash
+$ git log --pretty=short -u -L 155,155:git-web--browse.sh # -u for patch, -L for line range
+```
+
 
 ### tag
 
@@ -179,9 +190,9 @@ $ git diff #查看尚未暂存的文件更新了哪些部分
 
 $ git diff filename # 查看尚未暂存的某个文件更新了哪些
 
-$ git diff –cached # 查看已经暂存起来的文件和上次提交的版本之间的差异
+$ git diff --cached # 查看已经暂存起来的文件和上次提交的版本之间的差异
 
-$ git diff –cached filename # 查看已经暂存起来的某个文件和上次提交的版本之间的差异
+$ git diff --cached filename # 查看已经暂存起来的某个文件和上次提交的版本之间的差异
 
 $ git diff ffd98b2 b8e7b00 # 查看某两个版本之间的差异
 
@@ -271,10 +282,10 @@ $ git reset --hard 02ca477
 $ gitk file
 ```
 
-#### 2. git blame
+#### 2. git blame (last modified)
 
 ```bash
-$ git blame -L 20,30 README.md
+$ git blame -L 20,30 README.md # -L20,+10
 9cce7e0a (Henry   2019-01-23 14:37:11 +0800 10)
 ^a1f4fba (Henry   2019-01-08 12:45:41 +0800 11) ## Available Scripts
 ^a1f4fba (Henry   2019-01-08 12:45:41 +0800 12)
@@ -287,6 +298,48 @@ $ git blame -L 20,30 README.md
 ^a1f4fba (Henry   2019-01-08 12:45:41 +0800 19)
 ^a1f4fba (Henry   2019-01-08 12:45:41 +0800 20) The page will reload if you make edits.<br>
 $ git show a1f4fba
+```
+
+### patch
+
+#### create patch
+
+```bash
+$ git format-patch 2fba5b6^..dc131a9 # spawn 3 patch files
+0001-create-c-d.patch
+0002-modify-d.patch
+0003-modify-a.patch
+
+$ git format-patch master --stdout > tmp.patch # current branch diff master patch
+$ git format-patch 2fba5b6^..dc131a9 --stdout > tmp.patch # `2f` to `dc` (attention the caret after `2f`)
+
+$ git diff > diffs # for unstaged changes
+$ git diff --cached > diffs # for staged changes
+```
+
+#### check the patch
+
+```bash
+$ git checkout master
+$ git apply --stat tmp.patch # look at what changes are in the patch
+$ git apply --check tmp.patch # if no errors, the patch can be applied cleanly
+```
+
+#### apply the patch
+
+apply patches
+
+```bash
+$ git am --signoff < tmp.patch
+```
+
+> In you git log, you’ll find that the commit messages contain a “Signed-off-by” tag. This tag will be read by Github and others to provide useful info about how the commit ended up in the code.
+
+
+apply diff outputs
+
+```
+$ git apply diffs
 ```
 
 ### .gitignore
@@ -316,5 +369,5 @@ $ git push
 
 - [Pull VS Fetch](https://ruby-china.org/topics/15729)
 - [Git原理入门](http://www.ruanyifeng.com/blog/2018/10/git-internals.html)
-
+- [The meaning of the caret before git commit when doing blame](https://stackoverflow.com/questions/11915954/whats-the-meaning-of-the-caret-character-on-the-very-beginning-of-sha1-of-commi)
 
