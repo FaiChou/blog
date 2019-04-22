@@ -175,8 +175,8 @@ $ git checkout 7de7c6d . # change current dir file to 7de7c6d state
 ### Clean
 
 ```bash
-$ git clean -n $ list what would deleted
-$ git clean -f $ clean
+$ git clean -n # list what would deleted
+$ git clean -f # clean
 
 $ git clean # fail
 fatal: clean.requireForce defaults to true and neither -i, -n, nor -f given; refusing to clean
@@ -194,17 +194,17 @@ $ git clean -fx # same above
 ### Diff
 
 ```bash
-$ git diff #查看尚未暂存的文件更新了哪些部分
+$ git diff # diff current working tree and the index
 
-$ git diff filename # 查看尚未暂存的某个文件更新了哪些
+$ git diff filename # diff file
 
-$ git diff --cached # 查看已经暂存起来的文件和上次提交的版本之间的差异
+$ git diff --cached # diff staged and HEAD
 
-$ git diff --cached filename # 查看已经暂存起来的某个文件和上次提交的版本之间的差异
+$ git diff --cached filename # diff file in stage and HEAD
 
-$ git diff ffd98b2 b8e7b00 # 查看某两个版本之间的差异
+$ git diff ffd98b2 b8e7b00 # diff two commit
 
-$ git diff ffd98b2:filename b8e7b00:filename # 查看某两个版本的某个文件之间的差异
+$ git diff ffd98b2:filename b8e7b00:filename # diff file with two commit
 ```
 
 ### Show
