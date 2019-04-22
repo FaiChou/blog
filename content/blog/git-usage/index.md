@@ -15,12 +15,6 @@ emoji: "💥"
 
 <img src="https://raw.githubusercontent.com/FaiChou/faichou.github.io/master/img/1539328637990.png" width="700" />
 
-### File state
-
-<img src="https://raw.githubusercontent.com/FaiChou/faichou.github.io/master/img/1539329386702.png" width="700" />
-
-
-
 
 ### Add
 
