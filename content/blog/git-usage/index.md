@@ -265,8 +265,28 @@ $ git reset --hard 02ca477
 
 ### Show a file change history
 
+#### 1. gitk
+
 ```bash
 $ gitk file
+```
+
+#### 2. git blame
+
+```bash
+$ git blame -L 20,30 README.md
+9cce7e0a (Henry   2019-01-23 14:37:11 +0800 10)
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 11) ## Available Scripts
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 12)
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 13) In the project directory, you can run:
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 14)
+8d48cd57 (FaiChou 2019-01-30 09:57:46 +0800 15) ### `npm start` or `yarn start`
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 16)
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 17) Runs the app in the development mode.<br>
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 18) Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 19)
+^a1f4fba (Henry   2019-01-08 12:45:41 +0800 20) The page will reload if you make edits.<br>
+$ git show a1f4fba
 ```
 
 ### .gitignore
