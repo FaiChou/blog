@@ -343,6 +343,42 @@ $ find . -type f -name "*.ts" -or -name "*.tsx" -or -name "*.js" | xargs grep "r
 find current direction recursively all `ts, tsx, js` file which contain `require(` line.
 
 
+#### jobs
+
+```bash
+$ node server.js # run a server in foreground job
+
+$ node server.js & # run a server in background job
+
+$ nohup node server.js & # run a server as a deamon
+```
+
+#### kill jobs
+
+使用 ps 查看进程:
+
+```bash
+$ ps aux | grep aria2
+FaiChou          28815   0.0  0.0  4287496    840 s004  S+    1:33PM   0:00.00 grep --color=auto --exclude-dir=.bzr --exclude-dir=CVS --exclude-dir=.git --exclude-dir=.hg --exclude-dir=.svn aria2
+FaiChou          28423   0.0  0.0  4301432    924   ??  Ss    1:30PM   0:00.02 aria2c --conf-path=/Users/FaiChou/.aria2/aria2.conf -D
+$ kill -9 28423
+```
+
+使用 pgrep:
+
+```bash
+$ pgrep -l aria2
+28423 aria2
+$ kill -9 28423
+```
+
+使用 pkill:
+
+```bash
+$ pkill aria2
+```
+
+
 
 #### sips
 
