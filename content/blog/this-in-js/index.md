@@ -27,13 +27,11 @@ fooo() // log 2
 
 以上是基础的 `this` 绑定问题, 在 `obj` 环境下执行 `foo()`, `this` 绑定的是 `obj`, 在全局环境下, `fooo()` 则绑定了系统环境.
 
-如何让 `fooo` 绑定 `obj` 呢? 可以使用 `Function.prototype.bind()`:
+如何让 `fooo` 绑定 `obj` 呢? 可以使用 `Function.prototype.bind()` 强行绑定 `obj`:
 
 ```javascript
 var fooo = obj.foo.bind(obj)
 ```
-
-强行绑定 `obj`.
 
 ---
 
@@ -59,7 +57,7 @@ var obj = {
 console.log(obj.a) // Window
 ```
 
-这里的 `this` 指向的是 `parent`, 而非 `obj`, 在传统 js 中是没有 `block scope` 的, 只有 `function scope`, 证明如下:
+这里的 `this` 指向的是 `parent`, 而非 `obj`, 在传统 js 中是没有 `block scope` 的, 只有 `function scope` 和 `global scope`, 证明如下:
 
 ```javascript
 var x = 1
@@ -78,6 +76,8 @@ function foo() { // in function scope
 console.log(x) // 2
 console.log(y) // 1
 ```
+
+在 `es6` 中 `let, const` 是 `block scope` 的.
 
 ---
 
