@@ -9,10 +9,12 @@ emoji: "🍉"
 
 ```css
 * { margin:0; padding:0; } // all
+body { margin:0; padding:0; } // body
+:root { background: yellow; --theme-color: #c23451; } // represent the <html>, declaring global CSS variables
 p { font-size:2em; } // p
 .info { background:#ff0; } // class="info"
 p.info { background:#ff0; } // class="info" but in p
-p.info.error { color:#900; font-weight:bold; } // class="info error ..."
+p.info.error { color:#900; font-weight:bold; } // class="info error"
 #info { background:#ff0; } // id="info"
 p#info { background:#ff0; } // id="info" but in p
 
