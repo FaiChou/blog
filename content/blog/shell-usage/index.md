@@ -334,6 +334,8 @@ find . -iname "*.jpg" # ignore case all .jpg .JPG
 find . -type d # find directionaries
 find . -type f # find files
 find ./path/ -name '*.txt' | xargs grep 'string'
+find . -type f -iname "*.html" -exec grep "<head>" {} \; # exec
+find . -type f -iname "*.json" -execdir mv {} index.json \; # exec in dir
 ```
 
 ```bash
