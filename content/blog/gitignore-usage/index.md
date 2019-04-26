@@ -13,7 +13,7 @@ emoji: "⛱"
 
 Git支持:
 
-- 匹配node_modules目录下除去`node_modules/foo/`的内容
+- 匹配 `node_modules` 目录下但除去 `node_modules/foo/` 的内容
 
 ```
 node_modules/
@@ -67,12 +67,7 @@ ios/ECDeviceFile/Project/AddressBook/AddressBook/AddressBook.xcodeproj/xcuserdat
 
 #### Solution2
 
-使用git 1.8.2新出的规则: `MyPrject/WebApp/Scripts/special/**/*.js`
-
-```
-$ git --version
-git version 2.16.1
-```
+使用规则: `MyPrject/WebApp/Scripts/special/**/*.js`:
 
 ```
 ios/**/*.xcodeproj/xcuserdata/
