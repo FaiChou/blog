@@ -21,21 +21,43 @@ saga 使用 es6 的`generator函数`来运行, yield 的简单用法可以在网
 
 ```javascript
 function* fetchUser() {
-    const user = yield apiCall();
+  const user = yield apiCall()
+  console.log(user)
 }
 
-function apiCall() {
-    const user = { name: 'faichou', dob: 1994 };
-    return new Promise(resolve => setTimeout(resolve(user), 2000));
-}
+const apiCall = () => new Promise(resolve =>
+  setTimeout(
+    resolve,
+    2000,
+    { name: 'faichou', dob: 1994 }
+  )
+)
 
-const gen = fetchUser();
+const gen = fetchUser()
 
-// log user after 2 seconds
-gen.next().value.then(u => console.log(u));
+gen.next().value
+gen.next()
 ```
 
 常见的 saga 用法是 yield 后面跟一个动作, 这个动作如果返回一个异步函数, 那么 saga 就会挂载起来, 一直等到异步函数 resolve.
+
+saga 是如何工作的呢? 首先 saga 会判断 `value` 是否为 `promise`, 如果是, 那么等到 `resolve`, 将值再返回 `next(val)`, 如果不是, 那么将表达式的值直接 `next(val)`:
+
+```javascript
+const valUnknown = gen.next().value
+let val = null
+if (valUnknown instanceof Promise) { // or typeof valUnkown.then === 'function'
+  valUnknown.then(r => {
+    val = r
+    gen.next(val)
+  }).catch(err => {
+    gen.throw(err)
+  })
+} else {
+  val = valUnknown
+  gen.next(val)
+}
+```
 
 > Effects are simple JavaScript objects which contain instructions to be fulfilled by the middleware. When a middleware retrieves an Effect yielded by a Saga, the Saga is paused until the Effect is fulfilled.
 
@@ -56,24 +78,24 @@ effect 是包含一些指令信息的数据集, 它可以被 saga 解释执行.
 
 ```javascript
 function* rootSaga() {
-    yield all([
-        helloSaga(),
-        watchIncrementAsync(),
-    ]);
+  yield all([
+    helloSaga(),
+    watchIncrementAsync(),
+  ]);
 }
 ```
 
 ```javascript
 function* rootSaga() {
-    yield takeEvery('FETCH_UESRS', fetchUsers);
-    yield takeEvery('CREATE_USER', createUser);
+  yield takeEvery('FETCH_UESRS', fetchUsers);
+  yield takeEvery('CREATE_USER', createUser);
 }
 ```
 
 ```javascript
 const [users, repos] = yield all([
-    call(fetch, '/users'),
-    call(fetch, '/repos'),
+  call(fetch, '/users'),
+  call(fetch, '/repos'),
 ]);
 ```
 
@@ -81,16 +103,16 @@ const [users, repos] = yield all([
 
 ```javascript
 function* loginFlow() {
-    while (true) {
-        const { user, password } = yield take('LOGIN_REQUEST');
-        // fork return a Task object
-        const task = yield fork(authorize, user, password);
-        const action = yield take(['LOGOUT', 'LOGIN_ERROR']);
-        if (action.type === 'LOGOUT')
-          yield cancel(task);
-          
-        yield call(Api.clearItem, 'token');
-    }
+  while (true) {
+    const { user, password } = yield take('LOGIN_REQUEST');
+    // fork return a Task object
+    const task = yield fork(authorize, user, password);
+    const action = yield take(['LOGOUT', 'LOGIN_ERROR']);
+    if (action.type === 'LOGOUT')
+      yield cancel(task);
+
+    yield call(Api.clearItem, 'token');
+  }
 }
 ```
 
