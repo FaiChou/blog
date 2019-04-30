@@ -93,15 +93,13 @@ typeof d // "object"
 
 顺便提一嘴, `ReactDOMServer.renderToString(element)` 中, 返回的是 HTML 字符串, 这个 `ReactDOMServer.renderToString` 大多数用法是用来服务端渲染, 以利于 SEO 优化.
 
-有点跑题? 慢慢拽回来.
-
 既然 `ReactDOMServer.renderToString(element)` 返回的是 HTML 字符串, 如何把字符串转变为 DOM node:
 
 ```javascript
 const getDOMNodeFromReact = element => {
-	const div = document.createElement('div');
-	div.innerHTML = ReactDOMServer.renderToString(element).trim();
-	return div.firstChild;
+  const div = document.createElement('div');
+  div.innerHTML = ReactDOMServer.renderToString(element).trim();
+  return div.firstChild;
 };
 ```
 
