@@ -35,8 +35,8 @@ const apiCall = () => new Promise(resolve =>
 
 const gen = fetchUser()
 
-gen.next().value
-gen.next()
+gen.next().value.then(r => console.log(r)) // print user after 2 seconds
+gen.next() // print undefined
 ```
 
 常见的 saga 用法是 yield 后面跟一个动作, 这个动作如果返回一个异步函数, 那么 saga 就会挂载起来, 一直等到异步函数 resolve.
