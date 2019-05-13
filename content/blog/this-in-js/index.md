@@ -166,7 +166,7 @@ Bob.bar() // Bob
 Person.prototype // constructor, foo
 ```
 
-这里就有点奇怪, `Person` 的原型上没有 `bar`, 如果原型上没有 `bar`, 那么继承下去也不会有 `bar`.
+这里有点奇怪, `Person` 的原型上没有 `bar`, 如果原型上没有 `bar`, 那么实例 `Bob` 的 `bar` 哪里来的呢?
 
 通过 Babel 转移:
 
