@@ -107,6 +107,25 @@ done
 
 ```
 
+#### Brace Expansion
+
+```bash
+for i in {1..100}
+do
+   #do something 100 times
+done
+
+wget http://domain.com/book/page{1..5}.html
+
+
+cp /a/really/long/path/to/some/file.txt{,.bak}
+```
+
+```bash
+$ echo a{d,c,b}e
+ade ace abe
+```
+
 ## 串联命令
 
 #### pipe
