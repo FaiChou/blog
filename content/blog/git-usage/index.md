@@ -94,6 +94,19 @@ $ git branch new_branch
 $ git branch new_branch 1a08cbf # same above
 ```
 
+checkout remote branch
+
+```bash
+$ git fetch
+$ git checkout new_branch
+
+# or
+$ git checkout -b test <name_of_remote>/test
+
+# or
+$ git checkout -t <name_of_remote>/test
+```
+
 
 ### Stash
 
