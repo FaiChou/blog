@@ -162,3 +162,7 @@ console.log(p.b) // b
 他错在 `p` 继承与 `Person`, 应该是继承与 `Person.prototype`, 而 `Person.prototype` 继承与 `Object.prototype`.
 
 > Function 是其他声明函数的构造函数，__proto__ 隐式原型指向其构造函数的显式原型
+
+## 总结
+
+![prototype_chain](prototype_chain.JPG)
