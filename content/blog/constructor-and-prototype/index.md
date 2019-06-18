@@ -120,6 +120,27 @@ class Dog {
     this.name = name
   }
 }
+
+> Dog.constructor
+ƒ Function() { [native code] }
+```
+
+## 普通类型
+
+```javascript
+> var a = 'a'; var b = 2; var c = true;
+> a.constructor
+ƒ String() { [native code] }
+> b.constructor
+ƒ Number() { [native code] }
+> c.constructor
+ƒ Boolean() { [native code] }
+> a.__proto__
+String {"", constructor: ƒ, anchor: ƒ, big: ƒ, blink: ƒ, …}
+> b.__proto__
+Number {0, constructor: ƒ, toExponential: ƒ, toFixed: ƒ, toPrecision: ƒ, …}
+> c.__proto__
+Boolean {false, constructor: ƒ, toString: ƒ, valueOf: ƒ}
 ```
 
 ## 小问题
