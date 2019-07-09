@@ -111,7 +111,7 @@ $ git checkout -t <name_of_remote>/test
 ### Stash
 
 ```bash
-$ git stash # stash all changes (not untracked)
+$ git stash # stash all changes (untracked)
 $ git stash list
 stash@{0}: WIP on master: 049d078 added the index file
 stash@{1}: WIP on master: c264051 Revert "added file_size"
