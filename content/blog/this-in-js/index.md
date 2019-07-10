@@ -81,6 +81,43 @@ console.log(y) // 1
 
 ---
 
+```javascript
+var obj = {
+  id: 1,
+  foo: () => {
+    console.log(this.id)
+  },
+}
+obj.foo() // undefined
+
+var id = 2
+fooo() // 2
+```
+
+将 `foo` 改为箭头函数, 这里就会发生变化, 第一个在 `obj` 环境下执行结果是 `undefined`. 因为箭头函数是没有 `this` 的, `this` 虽然指向当前 scope, 但不包括 `arrow function`.
+
+经过 babel 转译是这样的:
+
+
+```javascript
+"use strict";
+
+var _this = void 0;
+
+var obj = {
+  id: 1,
+  foo: function foo() {
+    console.log(_this.id);
+  }
+};
+obj.foo();
+
+var id = 2;
+fooo();
+```
+
+---
+
 在 vue 官方文档中有[这么一段](https://cn.vuejs.org/v2/guide/instance.html#%E5%AE%9E%E4%BE%8B%E7%94%9F%E5%91%BD%E5%91%A8%E6%9C%9F%E9%92%A9%E5%AD%90):
 
 > 不要在选项属性或回调上使用箭头函数，比如 `created: () => console.log(this.a)` 或 `vm.$watch('a', newValue => this.myMethod())`。因为箭头函数是和父级上下文绑定在一起的，`this` 不会是如你所预期的 Vue 实例
