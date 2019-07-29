@@ -90,7 +90,7 @@ Worker 线程可以手动杀死: `myWorker.terminate()`, 它也可以随着页�
 
 所以 web workers 也解决不了一开始的问题, 但 workers 里有一个 `SharedWorker`, SharedWorker 是可以被多个页面/窗口/iframe/甚至 worker 共同调用.
 
-我建了这么一个例子:
+我建了这么一个例子([Demo地址](https://github.com/FaiChou/SharedWorkerDemo)):
 
 public.js:
 
