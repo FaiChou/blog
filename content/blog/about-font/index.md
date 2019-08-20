@@ -57,3 +57,30 @@ emoji: "🔤"
   text-overflow: ellipsis;
 }
 ```
+
+## 颜色渐变 & 下划线
+
+![FaiChou](FaiChou.PNG)
+
+```css
+h2 {
+  margin-top: 100px;
+  font-size: 20vw;
+  font-family: 'Poppins', sans-serif;
+  background: linear-gradient(to right, #ff8a00 0%, #da1b60 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  text-align: center;
+  position: relative;
+}
+h2::after {
+  position: absolute;
+  content: '';
+  bottom: -4px;
+  left: 50px;
+  right: 50px;
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(to right, #ff8a00 0%, #da1b60 100%);
+}
+```
