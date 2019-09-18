@@ -217,7 +217,7 @@ $ node --print-bytecode foo.js > ~/Downloads/foo-bytecode.txt
 
 ## interpreter
 
-![怎样写一个解释器](http://www.yinwang.org/blog-cn/2012/08/01/interpreter)
+[怎样写一个解释器](http://www.yinwang.org/blog-cn/2012/08/01/interpreter)
 
 这篇文章讲了如何写一个解释器, 跳过繁琐的过程, 直接看 **Lexical Scoping 和 Dynamic Scoping** 这一章节, 文中解释了 `Scope` 的原理, 以及 `lexical scoping` 和 `dynamic scoping` 的区别, 可以看出当初 js 采用 `lexical scope` 是非常明智的, `dynamic scoping` 总会产生莫名的 bug, 并且非常不利于人去阅读与理解.
 
