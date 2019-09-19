@@ -1,6 +1,6 @@
 ---
 title: "v2ray"
-date: "2019-0919"
+date: "2019-09-19"
 category: "other"
 emoji: "👨🏼‍💻"
 ---
