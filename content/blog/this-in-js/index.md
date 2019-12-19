@@ -126,14 +126,55 @@ fooo();
 
 ```javascript
 var data = { a: 1 }
-var app = new Vue({
-  data
-})
+var app = new Vue({ data })
 
 app.$data === data // true
 ```
 
 vue 实例的 `data` 共享外部 `data`, 它们指向同一个 `obj`.
+
+再看一个比较明显的例子:
+
+```javascript
+function foo() {
+  this.x = 1
+  var a = {
+    x: 2,
+    bar: () => console.log(this.x)
+  }
+  a.bar()
+}
+function baz() {
+  this.x = 1
+  var b = {
+    x: 2,
+    qux() {
+      console.log(this.x)
+    }
+  }
+  b.qux()
+}
+foo() // 1
+baz() // 2
+```
+
+这里 `foo` 函数内的 `a.bar` 因为是个箭头函数, 被转译后结果应该是这样:
+
+```javascript
+function foo() {
+  this.x = 1
+  var _this = this;
+  var a = {
+    x: 2,
+    bar: function bar() {
+      console.log(_this.x)
+    }
+  }
+  a.bar()
+}
+```
+
+而 `baz` 内的 `b.qux` 是个传统js函数, 有自己的闭包, 在解析 `this` 时候会去自己的环境作用域查找, 即 `a`.
 
 所以在 `component` 章节中强调了 [`data` 必须是一个函数](https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0):
 
@@ -258,12 +299,11 @@ const app = new Cpnt()
 app.foo() // 1
 app.bar() // 1
 const ele = app.render()
-
 ele.foo() // undefined
 ele.bar() // 1
 ```
 
-这就可以解释了在 `react` 中手动绑定 `this` 的原因.
+这就可以解释了在 `react` 中手动绑定 `this` 的原因, 在 `ele.foo()` 会去 `ele` 的环境下查找 `id`, 而 `ele` 并没有在 `Cpnt` 原型链上, 没有 `id` 属性.
 
 ## Reference
 
