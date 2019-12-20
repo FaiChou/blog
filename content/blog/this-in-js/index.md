@@ -140,25 +140,41 @@ function foo() {
   this.x = 1
   var a = {
     x: 2,
-    bar: () => console.log(this.x)
+    f: () => console.log(this.x)
   }
-  a.bar()
+  a.f()
 }
-function baz() {
+function bar() {
   this.x = 1
-  var b = {
+  var a = {
     x: 2,
-    qux() {
+    f() {
       console.log(this.x)
     }
   }
-  b.qux()
+  a.f()
+}
+x = 3
+function baz() {
+  var a = {
+    f: () => console.log(this.x)
+  }
+  a.f()
+}
+function qux() {
+  "use strict"
+  var a = {
+    f: () => console.log(this.x)
+  }
+  a.f()
 }
 foo() // 1
-baz() // 2
+bar() // 2
+baz() // 3
+qux() // throw undefined error
 ```
 
-这里 `foo` 函数内的 `a.bar` 因为是个箭头函数, 被转译后结果应该是这样:
+这里 `foo` 函数内的 `a.f` 因为是个箭头函数, 被转译后结果应该是这样:
 
 ```javascript
 function foo() {
@@ -166,15 +182,17 @@ function foo() {
   var _this = this;
   var a = {
     x: 2,
-    bar: function bar() {
+    f: function f() {
       console.log(_this.x)
     }
   }
-  a.bar()
+  a.f()
 }
 ```
 
-而 `baz` 内的 `b.qux` 是个传统js函数, 有自己的闭包, 在解析 `this` 时候会去自己的环境作用域查找, 即 `a`.
+而 `bar` 内的 `a.f` 是个传统js函数, 有自己的闭包, 在解析 `this` 时候会先去自己的环境查找, 即 `x` 为 2.
+
+`baz` 在非 `strict mode` 下, 自己的环境找不到会去全局环境中查找, 对比 `qux` 可以看到现象.
 
 所以在 `component` 章节中强调了 [`data` 必须是一个函数](https://cn.vuejs.org/v2/guide/components.html#data-%E5%BF%85%E9%A1%BB%E6%98%AF%E4%B8%80%E4%B8%AA%E5%87%BD%E6%95%B0):
 
