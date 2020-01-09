@@ -35,19 +35,9 @@ async function main() {
 ### onFulfilled returns a promise
 
 ```javascript
-function resolveLater(resolve) {
-  setTimeout(function () {
-    resolve(10);
-  }, 1000);
-}
-var p1 = Promise.resolve('foo');
-var p2 = p1.then(function() {
-  // Return promise here, that will be resolved to 10 after 1 second
-  return new Promise(resolveLater);
-})
-p2.then(function(v) {
-  console.log('resolved', v);  // "resolved", 10
-})
+var delayMsg = (ms, msg) => new Promise(r => setTimeout(r, ms, msg))
+Promise.resolve(delayMsg(1000, 'hello'))
+  .then(r => console.log(r)) // log `hello` after 1s
 ```
 
 > If `onFulfilled` returns a promise, the return value of `then` will be resolved/rejected by the promise.
