@@ -85,5 +85,5 @@ co(function* (value) {
 })('hello')
 ```
 
-如果去掉了 `handle` 直接 `gen.throw` 则在 `catch` 块里的 `yield` 不会被执行.
+如果去掉了 `handle`, 则在 `catch` 块里的 `yield` 不会被继续执行.
 
