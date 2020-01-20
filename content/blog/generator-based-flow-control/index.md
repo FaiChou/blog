@@ -87,3 +87,39 @@ co(function* (value) {
 
 如果去掉了 `handle`, 则在 `catch` 块里的 `yield` 不会被继续执行.
 
+
+业务场景中使用到的例子:
+
+### 直播回放弹幕播放
+
+有一个弹幕列表:
+
+```javascript
+const list = [
+  { ms: 1000, msg: 'hello1' },
+  { ms: 2000, msg: 'hello2' },
+  { ms: 2400, msg: 'hello3' },
+  { ms: 2800, msg: 'hello4' },
+  { ms: 10000, msg: 'hello' },
+]
+```
+
+ms 代表毫秒, msg 代表当到达视频 ms 时需要发送的弹幕, 所以需要写一个自动发射弹幕的方法:
+
+```javascript
+let _timeout = null
+
+function launch(msg, ms) {
+  return new Promise(function(resolve) {
+    setTimeout(resolve, ms, msg)
+  })
+}
+
+co(function* autoLancher(list) {
+  for (var i of list) {
+    const message = yield launch(i.msg, i.ms)
+    console.log(message)
+  }
+})(list)
+```
+
