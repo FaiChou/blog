@@ -107,8 +107,6 @@ const list = [
 ms 代表毫秒, msg 代表当到达视频 ms 时需要发送的弹幕, 所以需要写一个自动发射弹幕的方法:
 
 ```javascript
-let _timeout = null
-
 function launch(msg, ms) {
   return new Promise(function(resolve) {
     setTimeout(resolve, ms, msg)
@@ -116,8 +114,9 @@ function launch(msg, ms) {
 }
 
 co(function* autoLancher(list) {
-  for (var i of list) {
-    const message = yield launch(i.msg, i.ms)
+  for (var [i, obj] of list.entries()) {
+    const ms = i === 0 ? obj.ms : obj.ms - list[i-1].ms
+    const message = yield launch(obj.msg, ms)
     console.log(message)
   }
 })(list)
