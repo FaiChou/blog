@@ -141,7 +141,9 @@ Hope this helps you
 
 Charles 这种 GUI 工具感觉比较重，每次想要 hack 需要打开这个软件，能不能更简便的方式呢？最理想的方式是在系统后台运行一个 daemon，监测到 Sip 软件开启，自动代理全局网络来进行抓包重放。
 
-于是我找到了两个工具 AnyProxy 和 mitmproxy, 前者是对 Node 友好，后者是对 Python3 友好，这两者都可以对 HTTPS 进行抓包重放。
+于是我找到了两个工具 AnyProxy 和 mitmproxy, 前者是对 Node 友好，后者是对 Python3 友好，这两者都可以对 HTTP/HTTPS 进行抓包重放。
+
+下一篇会介绍如何使用这两者来完成上面的工作。
 
 
 ## Refs
