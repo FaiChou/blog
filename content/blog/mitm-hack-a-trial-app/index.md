@@ -5,6 +5,8 @@ category: "dev"
 emoji: "🧿"
 ---
 
+> 代码在[这里](https://github.com/FaiChou/hack-app-by-mitm)
+
 ## 前言
 
 上篇介绍了如何使用 Charles 来改写接口，达到 hack 的目的。其实针对 Charles 的抓包破解，app 可以很简单的防范住，比如客户端发送一个字符串 X，后台经过**与客户端相同的算法**处理变成 Y 返回给客户端， 这时客户端判断 `foo(X) === Y` 即可。因为在 Charles 中只能做简单的字符替换或正则替换，比较困难的算法处理是没办法解决的。幸运的是，上篇介绍的 Sip 采用了此中防范策略，可以继续拿它来测(kai)试(dao)。
