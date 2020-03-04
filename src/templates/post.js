@@ -3,6 +3,7 @@ import { graphql } from "gatsby";
 import Helmet from "react-helmet";
 import twemoji from "twemoji";
 import styled from "styled-components";
+import { DiscussionEmbed } from 'disqus-react';
 
 import Layout from "../components/Layout";
 import SEO from "../components/SEO";
@@ -108,6 +109,11 @@ class BlogPostTemplate extends React.Component {
     const siteTitle = this.props.data.site.siteMetadata.title;
     const { relatedPosts, slug } = this.props.pageContext;
     const { title, description, date, category, emoji } = post.frontmatter;
+    const disqusConfig = {
+      url: `https://faichou.space${this.props.location.pathname}`,
+      identifier: post.id,
+      title
+    }
     return (
       <Layout location={this.props.location} title={siteTitle}>
         <SEO title={title} description={description || post.excerpt} />
@@ -139,6 +145,8 @@ class BlogPostTemplate extends React.Component {
             <CategoryLabel slug={category} isLink="true" />
             <PostContent dangerouslySetInnerHTML={{ __html: post.html }} />
             <FollowBudge />
+            <hr />
+            <DiscussionEmbed shortname="faichou" config={disqusConfig} />
           </ContentMain>
           <aside>
             <ShareButtons slug={slug} title={title} emoji={emoji} />

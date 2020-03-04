@@ -9,6 +9,7 @@
   },
   "dependencies": {
     "babel-plugin-styled-components": "^1.10.0",
+    "disqus-react": "^1.0.7",
     "gatsby": "^2.0.118",
     "gatsby-image": "^2.0.29",
     "gatsby-plugin-google-analytics": "^2.0.14",
@@ -31,6 +32,7 @@
     "gatsby-source-filesystem": "^2.0.20",
     "gatsby-transformer-remark": "^2.2.4",
     "gatsby-transformer-sharp": "^2.1.13",
+    "inquirer": "^7.0.5",
     "netlify-cli": "^2.8.0",
     "prismjs": "^1.15.0",
     "react": "^16.8.0",
