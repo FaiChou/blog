@@ -399,6 +399,29 @@ $ kill -9 28423
 $ pkill aria2
 ```
 
+使用 killall:
+
+```bash
+$ killall aria2
+```
+
+###### pkill vs killall
+
+[What's the difference between pkill and killall?](https://unix.stackexchange.com/questions/91527/whats-the-difference-between-pkill-and-killall)
+
+主要区别是 `killall` 会完全匹配名字，名字不对则不会杀死，而 `pkill` 不用完全匹配名字。比如以下:
+
+```bash
+$ pgrep -l abc
+1234 abc
+12345 abcd
+123455 abcde
+$ pkill abc
+$ killall abc
+```
+
+使用 `pkill` 会杀死 `abc` `abcd` 和 `abcde` 三个进程，而 `killall` 只会杀死 `abc` 一个进程。
+
 
 
 #### sips
