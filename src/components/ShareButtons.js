@@ -48,7 +48,7 @@ const ShareButtons = ({ slug, title, emoji }) => {
   const encodedTitle = encodeURIComponent(
     `${emoji || "🐱"}${title} | FaiChou`
   );
-  const pageUrl = `https://faichou.space${slug}`;
+  const pageUrl = `https://faichou.com${slug}`;
   return (
     <Wrapper>
       <ShareTitle>SHARE</ShareTitle>

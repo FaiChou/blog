@@ -110,7 +110,7 @@ class BlogPostTemplate extends React.Component {
     const { relatedPosts, slug } = this.props.pageContext;
     const { title, description, date, category, emoji } = post.frontmatter;
     const disqusConfig = {
-      url: `https://faichou.space${this.props.location.pathname}`,
+      url: `https://faichou.com${this.props.location.pathname}`,
       identifier: post.id,
       title
     }
@@ -120,7 +120,7 @@ class BlogPostTemplate extends React.Component {
         <Helmet>
           <link
             rel="canonical"
-            href={`https://faichou.space${this.props.location.pathname}`}
+            href={`https://faichou.com${this.props.location.pathname}`}
           />
         </Helmet>
         <PostJsonLd

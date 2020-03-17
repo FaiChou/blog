@@ -29,7 +29,7 @@ HTTP是一个非常庞大的知识体，网上资料也铺天盖地，维基百�
     请求头中的信息有和缓存相关的头（Cache-Control，If-Modified-Since）、客户端身份信息（User-Agent）等等。
 
     ```
-    Host: faichou.space
+    Host: faichou.com
     Connection: keep-alive
     Cache-Control: max-age=0
     Upgrade-Insecure-Requests: 1

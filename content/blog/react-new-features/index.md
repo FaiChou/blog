@@ -171,7 +171,7 @@ context api 是为了解决多级参数传递问题, 如果不用 context, 只�
 
 ## portal
 
-之前写过一篇 [portal](http://faichou.space/notes/2017/12/25/react-portal-tut) 的介绍, react 中是表现在创建平行于 root 级别的dom, 而 RN 中的实现则是使用 present 一个 viewcontroller (iOS), 安卓的类似.
+之前写过一篇 [portal](http://faichou.com/notes/2017/12/25/react-portal-tut) 的介绍, react 中是表现在创建平行于 root 级别的dom, 而 RN 中的实现则是使用 present 一个 viewcontroller (iOS), 安卓的类似.
 
 
 

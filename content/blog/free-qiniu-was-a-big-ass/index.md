@@ -83,7 +83,7 @@ qdisk_down.conf:
     "dest_dir"   :   "/Users/FaiChou/Downloads/backup",
     "bucket"     :   "***",
     "cdn_domain" :   "",
-    "referer"    :   "http://faichou.space",
+    "referer"    :   "http://faichou.com",
     "log_file"   :   "download.log",
     "log_level"  :   "info",
     "log_rotate" :   1,

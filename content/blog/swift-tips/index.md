@@ -48,9 +48,9 @@ var set: Set<String> = []
 ### 3. url中汉字encode
 
 ```swift
-let urlStr = "http://faichou.space?name=周辉"
+let urlStr = "http://faichou.com?name=周辉"
 let urlStrEncode = urlStr.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed)
-print(urlStrEncode) // http://faichou.space?name=%E5%91...
+print(urlStrEncode) // http://faichou.com?name=%E5%91...
 ```
 
 

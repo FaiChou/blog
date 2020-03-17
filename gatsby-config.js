@@ -3,7 +3,7 @@ module.exports = {
     title: `FaiChou's Blog`,
     author: `FaiChou`,
     description: `FaiChou's personal blog`,
-    siteUrl: `http://faichou.space`,
+    siteUrl: `http://faichou.com`,
     social: {
       twitter: `faichou_zh`
     },
