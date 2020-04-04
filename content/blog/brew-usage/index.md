@@ -55,10 +55,9 @@ $ brew tap FaiChou/test # add https://github.com/FaiChou/homebrew-test to formul
 
 If you install any formula, brew will search by the order:
 
-```
-custom repo
-homebrew/core
-```
+1. custom repo
+2. homebrew/core
+
 
 ## pin
 
