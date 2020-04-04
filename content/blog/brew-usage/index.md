@@ -90,6 +90,16 @@ $ brew info httpie
 
 <img src="https://raw.githubusercontent.com/FaiChou/faichou.github.io/master/img/1546249026298.png" width="500" />
 
+## if you occurs
+
+#### Error: formula: /usr/local/Homebrew/.../xxx.rb:6 syntax error, unexpected <<
+
+Fetch and reset Homebrew and all tap repositories to their latest origin/master.
+
+```bash
+$ brew update-reset
+```
+
 ## also
 
 As we can see on the info page, packages are installed to `/usr/local/Cellar/` folder.
