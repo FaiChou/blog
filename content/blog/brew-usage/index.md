@@ -16,7 +16,6 @@ $ brew search cask
 <img src="https://raw.githubusercontent.com/FaiChou/faichou.github.io/master/img/1546248589499.png" width="500" />
 
 
-
 ## install
 
 ```bash
@@ -42,6 +41,28 @@ $ brew upgrade httpie # update specific package
 ```bash
 $ brew update # update brew local mirror
 ```
+
+## tap
+
+```bash
+$ brew tap
+homebrew/cask
+homebrew/core
+homebrew/services
+nonchalant/appicon
+$ brew tap FaiChou/test # add https://github.com/FaiChou/homebrew-test to formula repository
+```
+
+If you install any formula, brew will search by the order:
+
+```
+custom repo
+homebrew/core
+```
+
+## pin
+
+Preventing formula from being upgraded when issuing the brew upgrade formula command.
 
 ## clean
 
