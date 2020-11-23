@@ -174,6 +174,6 @@ sessionConfig.connectionProxyDictionary = proxyDict
 
 1. 大家都还不知道危险, 或者知道危险需要防范的(支付/银行类/聊天)都采用其他方式处理了
 2. 网络请求不使用 URLSession, 用其他的网络请求框架比如 *Alamofire* 没有这功能
-3. 程序届的道德底线
+3. 软件没必要绕过系统代理, 有些场景是要考虑系统代理的
 
 毕竟使用 SSL-Pinning 的都是有方法破解的, 所以道高一尺魔高一丈.
