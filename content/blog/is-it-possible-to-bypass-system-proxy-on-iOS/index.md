@@ -166,7 +166,7 @@ sessionConfig.connectionProxyDictionary = proxyDict
 
 并且当无法抓包时候, 使用 `mitmproxy client` 是可以抓包的:
 
-![4](4.jpg)
+![4](4.png)
 
 ## 一行代码这么管用, 为什么大家都不用
 
