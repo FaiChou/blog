@@ -340,7 +340,7 @@ gT            # go to previous tab
 
 # p(path) h(head) t(tail) 
 
-:w % %.bak      # backup current to current.bak
+:w %.bak        # backup current to current.bak
 :e %:p:h/main.h # open current path's main.h
 "%p             # insert current path
 
