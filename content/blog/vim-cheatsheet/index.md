@@ -118,6 +118,7 @@ c       # change (delete then insert)
 >       # indent right
 <       # indent left
 =       # auto indent
+~       # swap case for current character
 g~      # swap case
 gU      # uppercase
 gu      # lowercase
