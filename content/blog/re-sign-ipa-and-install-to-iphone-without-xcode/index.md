@@ -103,3 +103,27 @@ $ ideviceinstaller --install WeChat.ipa
 这里使用 `ideviceinstaller` 命令来安装 ipa 文件, `ideviceinstaller` 依赖于
 `libimobiledevice`, 它也有很多有趣的功能: https://github.com/libimobiledevice/libimobiledevice#utilities
 
+
+<hr>
+
+在 iOS8.3 之后, 苹果强制要求 `entitlement` 文件, 只用 `codesign` 签名 ipa
+并不能导入到手机使用, 导入会失败: `ApplicationVerificationFailed`.
+
+所以现在都需要使用 `mobileprovision` 文件来进行签名, 它包含了签名证书, AppID, 设备IDs和 `entitlement`.
+
+那么如何生成 `mobileprovision` 文件呢? 答案是使用 Xcode:
+
+> Xcode is the easiest way to create an iOS provisioning profile.
+
+能否有命令行可以生成 Provisioning Profile 呢(Personal Team)? 答案是没找到!
+
+但大概也能猜出个八九不离十, 因为当手机插到电脑上时候,
+手机上会弹框提示是否信任这台电脑, 当点击信任时候, 电脑就可以拿到手机的一些信息,
+其中包含 UDID, 当用 Xcode 创建一个项目时候, 它就会自动创建 Provisioning Profile,
+不信就去 `~/Library/MobileDevice/Provisioning Profiles` 里面看是否有刚生成的
+mobileprovision 文件, 它里面就包含刚刚信任手机的 UDID.
+
+那为什么不能用命令行生成 mobileprovision 文件呢?
+因为它的组成部分(证书和其他信息)需要被苹果亲自签名一下, 只能通过 Xcode,
+签名加上证书等文件才最终组成了 Provisioning Profile.
+
