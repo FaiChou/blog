@@ -20,8 +20,7 @@ emoji: "🔏"
 plist 文件, plist 文件是对 ipa 的描述.
 
 ```html
-        <a
-          href="itms-services://?action=download-manifest&url=https://bdc3168dc0ea.ngrok.io/tf.plist">download</a>
+<a href="itms-services://?action=download-manifest&url=https://bdc3168dc0ea.ngrok.io/tf.plist">download</a>
 ```
 
 ```plist
@@ -92,6 +91,4 @@ plist 文件, plist 文件是对 ipa 的描述.
 
 将其放到统一目录下(方便托管), 然后在目录下开一个 server, 记住端口号. 然后用
 ngrok 等工具将其内网转发到外面去. 于是手机就可以用域名来访问下载页面了.
-
-但第二个方法一直下载失败, 不知道是哪里的问题, 难道苹果禁止了这种方法吗?
 
