@@ -92,3 +92,14 @@ plist 文件, plist 文件是对 ipa 的描述.
 将其放到统一目录下(方便托管), 然后在目录下开一个 server, 记住端口号. 然后用
 ngrok 等工具将其内网转发到外面去. 于是手机就可以用域名来访问下载页面了.
 
+## 3. 使用命令行下载
+
+```bash
+$ brew install libimobiledevice
+$ brew install ideviceinstaller
+$ ideviceinstaller --install WeChat.ipa
+```
+
+这里使用 `ideviceinstaller` 命令来安装 ipa 文件, `ideviceinstaller` 依赖于
+`libimobiledevice`, 它也有很多有趣的功能: https://github.com/libimobiledevice/libimobiledevice#utilities
+
