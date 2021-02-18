@@ -375,6 +375,8 @@ cs"'    # change surrond " to '
 
 :.,+9s/new/<C-R>0/g # replace new to regster0 from current to next 9 lines
 
+:2,4j   # join line 2-4
+
 # insert mode shortcuts
 <C-W> # delete before cursor words
 <C-[> # quit insert mode
