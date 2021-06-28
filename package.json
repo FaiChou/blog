@@ -34,7 +34,7 @@
     "gatsby-transformer-sharp": "^2.1.13",
     "inquirer": "^7.0.5",
     "netlify-cli": "^2.8.0",
-    "prismjs": "^1.15.0",
+    "prismjs": "^1.24.0",
     "react": "^16.8.0",
     "react-dom": "^16.8.0",
     "react-helmet": "^5.2.0",
