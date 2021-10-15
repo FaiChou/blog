@@ -122,3 +122,50 @@ for (char **p; *p != NULL; p++) {
     printf("%s\n", *p);
 }
 ```
+
+## struct and double pointer
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+
+typedef struct tree {
+  char *name;
+  struct tree** children;
+} tree;
+
+int main() {
+    tree x = { .name = "namea" };
+    tree y = { .name = "nameb" };
+    tree* list[] = {&x, &y};
+    tree z = {
+      .name = "namec"
+      // .children = list // 1⃣️
+    };
+
+    z.children = malloc(sizeof(tree *) * 2);
+
+    *z.children = malloc(sizeof(tree));
+    *z.children = &x;
+
+    z.children[1] = malloc(sizeof(tree));
+    z.children[1] = &y;
+
+    tree *children1 = z.children[1];
+    children1->name = "namechildren1";
+    
+    (*z.children)->name = "namex"; // or z.children[0]->name
+    // (*(z.children+1))->name = "namey";
+    printf("%s %s\n", x.name, y.name);
+    return 0;
+}
+```
+
+> 指针只能接内存地址。内存地址哪里来？一般两个来源，1，栈数组decay得到 2，malloc得到
+
+在 1⃣️ 的地方, 是通过数组 decay 赋值内存地址, 如果不这样, 就需要下面的 malloc 方式进行内存初始化.
+
+再回到开头的讨论指针的意义. 如果上述结构体中, 没有 `**` 则外部传入的 children 则是内存的拷贝, 所以无法对外部的数据进行修改.
+
+如果使用 `*` (一个星), 比如 `node->next`, 则只会有一个外部数据. 要想实现引用多个数据, 则可以用 `**` 两个星的方式.
