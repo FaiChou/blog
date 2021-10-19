@@ -208,3 +208,50 @@ int main() {
 `memmove` 进行了优化, 如果发现上述问题, 则从尾巴地方(也就是从 `e`)的位置开始复制, 避免了意外发生.
 
 如果 `src` 的地址大于等于 `dest`, 则 `memcpy` 和 `memmove` 结果是一样的, 对 overlap 的数据进行覆盖, 也是不影响最终结果的.
+
+
+## pop
+
+```c
+typedef struct foo {
+    char* name;
+    int count;
+    struct foo** others;
+} foo;
+foo* foo_pop(foo* f, int i) {
+    foo* r = f->others[i];
+    memmove(&f->others[i], &f->others[i+1], sizeof(foo*)*(f->count-i-1));
+    f->count--;
+    f->others = realloc(f->others, sizeof(foo*)*f->count);
+    return r;
+}
+int main(void) {
+    foo a = { .name = "fooa" };
+    foo b = { .name = "foob" };
+    foo c = { .name = "fooc" };
+    foo d = { .name = "food" };
+    foo x = { .name = "foox", .count = 4 };
+    x.others = malloc(sizeof(foo*) * 4);
+    x.others[0] = malloc(sizeof(foo));
+    x.others[0] = &a;
+    x.others[1] = malloc(sizeof(foo));
+    x.others[1] = &b;
+    x.others[2] = malloc(sizeof(foo));
+    x.others[2] = &c;
+    x.others[3] = malloc(sizeof(foo));
+    x.others[3] = &d;
+    foo* y = foo_pop(&x, 0);
+    printf("%s\n", y->name); // fooa
+    return 0;
+}
+```
+
+![struct](3.png)
+
+`malloc(sizeof(foo*) * 4);` 是开辟一块连续的数据, 每个数据块 8 个字节(因为存储的内容是指针嘛), 共 4 个.
+
+然后再对其每一个初始化, 每一个指向的是结构体, `foo` 结构体大小是 20, 然后赋值为 &a &b &c &d.
+
+在 `foo_pop` 函数中, `foo* r = f->others[0]` 是将 `r` 设置为 `f->others[0]` 即 `c0` 地址(a所在), 而非所之前我所理解的第 0 号位置的指针. 如果想设置为第 0 号位置的指针应该写为 `r = &f->others[0]`.
+
+所以在 `memmove` 时候是需要将*数组*第 i 号的地址进行移动, 即 `&f->others[i]`.
