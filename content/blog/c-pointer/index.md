@@ -169,3 +169,42 @@ int main() {
 再回到开头的讨论指针的意义. 如果上述结构体中, 没有 `**` 则外部传入的 children 则是内存的拷贝, 所以无法对外部的数据进行修改.
 
 如果使用 `*` (一个星), 比如 `node->next`, 则只会有一个外部数据. 要想实现引用多个数据, 则可以用 `**` 两个星的方式.
+
+## 关于 realloc 的讨论
+
+```c
+char* s = malloc(6);
+strncpy(s, "abcd8", 5);
+const char* s2  = "xyz";
+memmove(s, s2, 4);
+s = realloc(s, 3);
+printf("s = %s, s2 = %s, s = %p \n", s, s2, s); // s = xyz, s2 = xyz, s = 0x13de06880 
+printf("strlen s = %ld\n", strlen(s)); // strlen s = 3
+free(s);
+```
+
+上面代码如果改成 `memmove(s, s2, 3)` 则 `s` 会是 `xyzd8`. 因为 `strlen` 只认 `'\0'`.
+
+其实对于 string 的截断, 没必要用 relloc, 直接 `s[3] = '\0';` 即可. 因为 relloc **会偷懒**, 它发现给定的大小比原先的小, 于是就什么也不做.
+
+## memcpy vs memmove
+
+```c
+int main() {
+    char a[] = "abcdefghi";
+    // memcpy(a+2, a, 3); // ababafghi
+    // memmove(a+2, a, 3); // ababcfghi
+    // memcpy(a, a+2, 4); // cdefefghi
+    // memmove(a, a+2, 4); // cdefefghi
+    printf("%s\n", a);
+    return 0;
+}
+```
+
+![memcpy-vs-memmove](2.png)
+
+如果 `src` 的地址小于 `dest`, 那么 `memcpy` 函数可能会发生意外, 比如这个时候处理 overlap 数据部分, 复制到 `c` 的时候, `c` 其实已经被修改成 `a` 了, 所以最终结果还是 `a`.
+
+`memmove` 进行了优化, 如果发现上述问题, 则从尾巴地方(也就是从 `e`)的位置开始复制, 避免了意外发生.
+
+如果 `src` 的地址大于等于 `dest`, 则 `memcpy` 和 `memmove` 结果是一样的, 对 overlap 的数据进行覆盖, 也是不影响最终结果的.
