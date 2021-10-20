@@ -36,7 +36,7 @@ char *s = "abc";
 ```c
 int a = 1;
 int *pa = &a;
-int **ppa = &a;
+int **ppa = &pa;
 ```
 
 ![c pointer](1.png)
@@ -146,10 +146,7 @@ int main() {
 
     z.children = malloc(sizeof(tree *) * 2);
 
-    *z.children = malloc(sizeof(tree));
     *z.children = &x;
-
-    z.children[1] = malloc(sizeof(tree));
     z.children[1] = &y;
 
     tree *children1 = z.children[1];
@@ -232,13 +229,9 @@ int main(void) {
     foo d = { .name = "food" };
     foo x = { .name = "foox", .count = 4 };
     x.others = malloc(sizeof(foo*) * 4);
-    x.others[0] = malloc(sizeof(foo));
     x.others[0] = &a;
-    x.others[1] = malloc(sizeof(foo));
     x.others[1] = &b;
-    x.others[2] = malloc(sizeof(foo));
     x.others[2] = &c;
-    x.others[3] = malloc(sizeof(foo));
     x.others[3] = &d;
     foo* y = foo_pop(&x, 0);
     printf("%s\n", y->name); // fooa
@@ -248,7 +241,7 @@ int main(void) {
 
 ![struct](3.png)
 
-`malloc(sizeof(foo*) * 4);` 是开辟一块连续的数据, 每个数据块 8 个字节(因为存储的内容是指针嘛), 共 4 个.
+`malloc(sizeof(foo*) * 4);` 是开辟一块**连续的**内存数据, 每个数据块 8 个字节(因为存储的内容是指针嘛), 共 4 个.
 
 然后再对其每一个初始化, 每一个指向的是结构体, `foo` 结构体大小是 20, 然后赋值为 &a &b &c &d.
 
