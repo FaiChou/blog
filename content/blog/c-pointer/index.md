@@ -100,8 +100,8 @@ char **s = a;
 
 ```c
 char **s = malloc(sizeof(char *) * 2);
-*s = (char *)malloc(sizeof(char) *4);
-s[1] = malloc(sizeof(char) *4);
+*s = (char *)malloc(sizeof(char) *5);
+s[1] = malloc(sizeof(char) *5);
 strncpy(s[0], "a32q", 4);
 strncpy(*(s+1), "dexg", 4);
 printf("%c\n", *s[0]); // print a
