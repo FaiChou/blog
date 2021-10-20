@@ -103,7 +103,7 @@ char **s = malloc(sizeof(char *) * 2);
 *s = (char *)malloc(sizeof(char) *4);
 s[1] = malloc(sizeof(char) *4);
 strncpy(s[0], "a32q", 4);
-strncpy(*(s+1), "defg", 4);
+strncpy(*(s+1), "dexg", 4);
 printf("%c\n", *s[0]); // print a
 printf("%c\n", **s); // print a
 printf("%c\n", s[0][1]); // print 3
@@ -111,6 +111,7 @@ printf("%c\n", *(*s+1)); // print 3
 printf("%c\n", *(*s+2)); // print 2
 printf("%c\n", *s[1]); // print d
 printf("%c\n", **(s+1)); // print d
+printf("%c\n", *(*(s+1)+2)); // print x
 printf("%c\n", **(s+1)+2); // print f
 printf("%c\n", **(s+1)+9); // print m
 ```
