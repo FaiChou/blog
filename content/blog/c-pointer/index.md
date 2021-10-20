@@ -102,8 +102,8 @@ char **s = a;
 char **s = malloc(sizeof(char *) * 2);
 *s = (char *)malloc(sizeof(char) *5);
 s[1] = malloc(sizeof(char) *5);
-strncpy(s[0], "a32q", 4);
-strncpy(*(s+1), "dexg", 4);
+strncpy(s[0], "a32q", 5);
+strncpy(*(s+1), "dexg", 5);
 printf("%c\n", *s[0]); // print a
 printf("%c\n", **s); // print a
 printf("%c\n", s[0][1]); // print 3
