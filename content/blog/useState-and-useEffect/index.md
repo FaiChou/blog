@@ -114,3 +114,55 @@ hasChanged = deps.some((d, index) => !Object.is(d, oldDeps[index]))
 1. 只能 **render** 一个 *Component*, 因为此实现里的 *React* 只有一个 `global` 和 `index`, 如果存在多个 `Component`, 则共用同一份数据, 则会出错.
 2. `deps.some((d, index) => !Object.is(d, oldDeps[index]))` 这样写, 逻辑比较混乱.
 3. *BUG*: 当 *Component* 不使用 `useState` 而使用 `useEffect`, 或者 `useEffect` 在 `useState` 前使用, 则 `hooks` 不会被初始化而报错. 
+
+
+## 自己实现了一个简易的 `useState`
+
+```javascript
+let state = [];
+let index = 0;
+let global = {};
+function createSetter(index) {
+  return function(newVal) {
+    state[index] = newVal;
+    // TODO: re-render
+  };
+}
+function useState(initVal) {
+  const value = state[index] || initVal;
+  state[index] = value;
+  const setter = createSetter(index);
+  index++;
+  return [value, setter];
+}
+function Component1() {
+  const [firstName, setFirstName] = useState("Fai");
+  const [lastName, setLastName] = useState("Chou");
+  console.log(firstName);
+  console.log(lastName);
+  return {
+    setFirstName,
+    setLastName,
+  }
+}
+function render(Component) {
+  var componentSetters = Component();
+  console.log(componentSetters)
+  for (const [key, value] of Object.entries(componentSetters)) {
+    global[key] = value;
+  }
+}
+function APP() {
+  index = 0; // reset
+  render(Component1);
+}
+
+console.log(state); // []
+APP();
+console.log(state); // First-render: ['Fai', 'Chou']
+APP();
+console.log(state); // Subsequent-render: ['Fai', 'Chou']
+global.setFirstName('Hui');
+console.log(state); // After: ['Hui', 'Chou']
+
+```
