@@ -114,6 +114,7 @@ hasChanged = deps.some((d, index) => !Object.is(d, oldDeps[index]))
 1. 只能 **render** 一个 *Component*, 因为此实现里的 *React* 只有一个 `global` 和 `index`, 如果存在多个 `Component`, 则共用同一份数据, 则会出错.
 2. `deps.some((d, index) => !Object.is(d, oldDeps[index]))` 这样写, 逻辑比较混乱.
 3. *BUG*: 当 *Component* 不使用 `useState` 而使用 `useEffect`, 或者 `useEffect` 在 `useState` 前使用, 则 `hooks` 不会被初始化而报错. 
+4. `useEffect` 并不是每次 **render** 后执行回调, 而是立即调用.
 
 
 ## 自己实现了一个简易的 `useState`
