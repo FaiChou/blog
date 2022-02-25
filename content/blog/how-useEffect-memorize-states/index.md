@@ -106,3 +106,28 @@ function Example() {
 ```
 
 这里会 log: `0 5 5 5 5 5`.
+
+## 例子5
+
+```javascript
+function useNavigationState(selector) {
+  const navigation = useNavigation();
+  const [, setResult] = React.useState(() => selector(navigation.getState()));
+  const selectorRef = React.useRef(selector);
+  React.useEffect(() => {
+    selectorRef.current = selector;
+  });
+  React.useEffect(() => {
+    const unsubscribe = navigation.addListener('state', e => {
+      setResult(selectorRef.current(e.data.state));
+    });
+    return unsubscribe;
+  }, [navigation]);
+  return selector(navigation.getState());
+}
+```
+
+这里为什么要用 ref 来存储 `selector`?
+
+因为下面的 `useEffect` 里面要使用, 如果不用 `ref+useEffect` 来更新而直接使用 selector, 则下面的 `useEffect(()=>{},[navigation])` 里永远是上一次 navigation 变化时候的旧 selector, 每次传入的函数都是变化的, 当然也有可能传入的不是纯函数, 因此这种情况尤为重要.
+
