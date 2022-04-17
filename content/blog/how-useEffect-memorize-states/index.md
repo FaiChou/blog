@@ -107,7 +107,7 @@ function Example() {
 
 这里会 log: `0 5 5 5 5 5`.
 
-## 例子5
+## 例子4
 
 ```javascript
 function useNavigationState(selector) {
