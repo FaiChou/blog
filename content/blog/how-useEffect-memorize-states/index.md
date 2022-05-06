@@ -105,9 +105,55 @@ function Example() {
 }
 ```
 
+## 例子4
+
+```javascript
+let _r = null;
+function Example() {
+  const [count, setCount] = useState(0);
+  _r = count;
+  useEffect(() => {
+    setTimeout(() => {
+      // Read the mutable latest value
+      console.log(`You clicked ${_r} times`);
+    }, 3000);
+  });
+  // ...
+}
+```
+
 这里会 log: `0 5 5 5 5 5`.
 
-## 例子4
+```javascript
+function useRef(val) {
+  const r = useState({ current: val })[0];
+  return r;
+}
+```
+
+## 例子5
+
+```javascript
+function usePrevious(v) {
+  const p = useRef(v);
+  useEffect(() => p.current = v);
+  return p.current;
+}
+```
+
+## 例子6
+
+```javascript
+function useReducer(reducer, initialVal) {
+  const [state, setState] = useState(initialVal);
+  function dispatch(action) {
+    setState(reducer(state, action));
+  }
+  return [state, dispatch];
+}
+```
+
+## 例子
 
 ```javascript
 function useNavigationState(selector) {
