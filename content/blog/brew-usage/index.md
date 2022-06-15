@@ -78,8 +78,18 @@ $ brew home httpie # visit httpie's homepage
 
 ## list
 
+This will list all formulae including auto installed dependencies.
+
 ```bash
 $ brew list
+```
+
+## leaves
+
+> Show installed formulae that are not dependencies of another installed formula. 
+
+```bash
+$ brew leaves
 ```
 
 ## check info
