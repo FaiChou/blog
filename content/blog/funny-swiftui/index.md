@@ -49,7 +49,7 @@ extension ChildView: Equatable {
 
 ## 例子2
 
-这个例子比较难懂, 开发了这么久, 我仍然没有完全搞明白范型和 Opaque Type.
+这个例子比较难懂, 开发了这么久, 我仍然没有完全搞明白类型协议和 Opaque Type.
 
 ```swift
 protocol MobileOS {
@@ -97,7 +97,7 @@ func buildOS() -> some MobileOS {
 
 ```swift
 func buildOS() -> some MobileOS {
-   let isEven = Int.random(in: 0...100) % 2 == 0
+   let isEven = Int.random(in: 0...10) % 2 == 0
    return isEven ? iOS(version: 16.1) : Android(version: "Pie")
 }
 // Compiler ERROR 😭
@@ -108,7 +108,7 @@ func buildOS() -> some MobileOS {
 
 ```swift
 func buildOS() -> some MobileOS {
-   let isEven = Int.random(in: 0...100) % 2 == 0
+   let isEven = Int.random(in: 0...10) % 2 == 0
    return isEven ? iOS(version: 16.1) : iOS(version: 16.2)
 }
 ```
