@@ -53,7 +53,7 @@ brew tap homebrew/cask-fonts && brew install font-lxgw-wenkai
 
 ![Rime Congif Path](Rime-Config-Path.png)
 
-配置使用了 YAML 格式, 一些默认配置尽量不要调整, 比如 `default.yaml, dobule_pinyin_flypy.schema.yaml, squirrel.yaml`, 这几个配置文件想要调整则需要对应的 custom 文件: `default.custom.yaml, obule_pinyin_flypy.custom.yaml, squirrel.custom.yaml`.
+配置使用了 YAML 格式, 一些默认配置尽量不要调整, 比如 `default.yaml, dobule_pinyin_flypy.schema.yaml, squirrel.yaml`, 这几个配置文件想要调整则需要对应的 custom 文件: `default.custom.yaml, dobule_pinyin_flypy.custom.yaml, squirrel.custom.yaml`.
 
 任何配置文件的修改, 都需要重新部署才能生效, 点击右上角的输入法, 再点击部署, 或者使用脚本应该这么写:
 
