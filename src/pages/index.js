@@ -20,6 +20,7 @@ class BlogIndex extends React.Component {
         <SEO title="" />
         <Helmet>
           <link rel="faichou" href="https://faichou.com" />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.5.0/lxgwwenkaiscreenr.css"></link>
         </Helmet>
         <HomeJsonLd />
         <CategoryMenu location={location} />
