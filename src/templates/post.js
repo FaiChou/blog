@@ -122,6 +122,7 @@ class BlogPostTemplate extends React.Component {
             rel="canonical"
             href={`https://faichou.com${this.props.location.pathname}`}
           />
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.5.0/lxgwwenkaiscreenr.css"></link>
         </Helmet>
         <PostJsonLd
           title={title}

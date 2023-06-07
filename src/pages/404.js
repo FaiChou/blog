@@ -50,6 +50,9 @@ class NotFoundPage extends React.Component {
       <Layout location={this.props.location} title={siteTitle}>
         <Wrapper>
           <SEO title="FaiChou's blog 404" />
+          <Helmet>
+            <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.5.0/lxgwwenkaiscreenr.css"></link>
+          </Helmet>
           <HeroImage src={svg404} />
           <Title>Not Found</Title>
           <StyledLink to={`/`} className="cat-item__link">

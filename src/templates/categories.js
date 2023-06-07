@@ -32,6 +32,9 @@ class CategoryTemplate extends React.Component {
     return (
       <Layout location={this.props.location} title={categoryName}>
         <SEO title={categoryName} />
+        <Helmet>
+          <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/lxgw-wenkai-screen-webfont/1.5.0/lxgwwenkaiscreenr.css"></link>
+        </Helmet>
         <CategoryJsonLd
           categorySlug={categorySlug}
           categoryName={categoryName}
