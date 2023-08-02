@@ -163,7 +163,64 @@ c50b06716c89e84b9c05f15c01a1a4d6c2fccd47f4cfb732ffe9b00d46a8f7b72d26229475589515
 
 如果长度字节是 81，那么表示接下来有 1 个字节用于表示长度。如果长度字节是 83，那么表示接下来有 3 个字节用于表示长度，依此类推。
 
-## 解密的代码解释
+[这个项目里](https://github.com/TakeScoop/SwiftyRSA/blob/master/Source/Asn1Parser.swift#L152)可以看到它是怎么解析的：
+
+```
+func parseNode(scanner: Scanner) throws -> Node {
+		let firstByte = try scanner.consume(length: 1).firstByte
+		
+		// Sequence
+		if firstByte == 0x30 {
+				let length = try scanner.consumeLength()
+				let data = try scanner.consume(length: length)
+				let nodes = try parseSequence(data: data)
+				return .sequence(nodes: nodes)
+		}
+		
+		// Integer
+		if firstByte == 0x02 {
+				let length = try scanner.consumeLength()
+				let data = try scanner.consume(length: length)
+				return .integer(data: data)
+		}
+		
+		// Object identifier
+		if firstByte == 0x06 {
+				let length = try scanner.consumeLength()
+				let data = try scanner.consume(length: length)
+				return .objectIdentifier(data: data)
+		}
+		
+		// Null
+		if firstByte == 0x05 {
+				_ = try scanner.consume(length: 1)
+				return .null
+		}
+		
+		// Bit String
+		if firstByte == 0x03 {
+				let length = try scanner.consumeLength()
+				
+				// There's an extra byte (0x00) after the bit string length in all the keys I've encountered.
+				// I couldn't find a specification that referenced this extra byte, but let's consume it and discard it.
+				_ = try scanner.consume(length: 1)
+				
+				let data = try scanner.consume(length: length - 1)
+				return .bitString(data: data)
+		}
+		
+		// Octet String
+		if firstByte == 0x04 {
+				let length = try scanner.consumeLength()
+				let data = try scanner.consume(length: length)
+				return .octetString(data: data)
+		}
+		
+		throw ParserError.invalidType(value: firstByte)
+}
+```
+
+## RSA 公钥解密
 
 下面是一段 go 语言写的使用公钥进行 rsa 解密函数:
 
@@ -195,6 +252,45 @@ func rsaDecrypt(input []byte) []byte {
 将 m 转成字节后，查找是否有 `\x00`, 为什么要查找呢？因为 PKCS#1 v1.5 规定了数据的填充，解码一个使用 PKCS#1 v1.5 填充的消息时，你可以从左到右扫描填充消息，直到遇到第一个 '00' 字节，这就是分隔符。在非对称加密比如 RSA 中，如果不进行填充而直接进行加密是不安全的做法，不填充相同的明文将会产生相同的密文，这可能会暴露给攻击者一些信息。但是需要注意的是，尽管 PKCS#1 v1.5在实践中被广泛使用，但它已被证明存在安全漏洞，例如著名的 Bleichenbacher's 攻击。因此，现在更推荐使用更安全的 PKCS#1 v2.1，也就是 OAEP（Optimal Asymmetric Encryption Padding）填充方案。
 
 然后找到填充点，再将后面的数据取出并合并起来，这样就完成了解密过程。
+
+
+## 名词解释
+
+- XDR：XDR是一种标准数据串行化格式，被用于描述数据在不同主机间的传输格式。它被设计出来以解决因机器、操作系统、和网络传输所引发的数据表示一致性问题。例如，它可以用来解决大端和小端的问题，或者整数和浮点数的表示方式等问题。XDR常见于远程过程调用（RPC）等网络通信场景。
+- DER：DER是一种二进制编码规则，用于ASN.1规定的数据结构。DER确保每个数据项只有一种编码方式，使得编码后的数据可以通过简单的字节比较进行一致性检查。DER常用于公钥基础设施和X.509证书。
+- ASN.1：ASN.1是一种语法，用于描述数据结构。它广泛应用于电信和计算机网络中，用于实现网络协议、通信协议和加密算法等。ASN.1数据结构可以使用多种编码规则进行编码，如BER、DER、PER等。
+- X.509：X.509是公钥基础设施（PKI）的一部分，定义了证书的格式。证书包含公钥、身份信息和一些其他信息。X.509证书通常使用DER编码，并可能进一步以PEM或其他格式进行编码。
+- PEM：PEM是一种用于将二进制数据编码为ASCII字符串的格式。PEM格式的文件通常包含"-----BEGIN CERTIFICATE-----"和"-----END CERTIFICATE-----"等行。虽然PEM最初是为电子邮件设计的，但现在它被广泛应用于SSL和TLS证书，SSH密钥等。
+
+当你需要创建一个X.509证书时，你可能首先使用ASN.1来定义数据结构，然后使用DER对其进行编码，最后将编码后的结果转换为PEM格式以方便存储和传输。
+
+当你从一个HTTPS网站获取它的SSL证书时，你可能会看到一个PEM格式的X.509证书。这个证书中包含了用DER编码的ASN.1数据结构。
+
+ASN.1通常用于定义更复杂的数据结构。例如，一个X.509证书的主题名可能会用ASN.1定义如下：
+
+```
+Name ::= CHOICE { -- only one possibility for now --
+    rdnSequence  RDNSequence }
+
+RDNSequence ::= SEQUENCE OF RelativeDistinguishedName
+
+RelativeDistinguishedName ::= SET SIZE (1..MAX) OF AttributeTypeAndValue
+```
+
+在上面的ASN.1定义中，Name是由一个或多个RelativeDistinguishedName组成的序列，每个RelativeDistinguishedName是一个或多个AttributeTypeAndValue的集合。在编码为DER格式时，这些数据结构会被转换为二进制格式。
+
+PEM通常用于表示二进制数据，如X.509证书。一个X.509证书可能看起来像这样:
+
+```
+-----BEGIN CERTIFICATE-----
+MIIDITCCAoqgAwIBAgIQL9+89q6RUm0PmqPfQDQ+mjANBgkqhkiG9w0BAQUFADBM
+MQswCQYDVQQGEwJaQTElMCMGA1UEChMcVGhhd3RlIENvbnN1bHRpbmcgKFB0eSkg
+THRkLjEWMBQGA1UEAxMNVGhhd3RlIFNHQyBDQTAeFw0wOTEyMTgwMDAwMDBaFw0x
+...
+-----END CERTIFICATE-----
+```
+
+在上面的例子中，PEM格式的数据被包含在"BEGIN CERTIFICATE"和"END CERTIFICATE"标记之间。这些数据实际上是用Base64编码的DER编码的X.509证书。
 
 
 ## 参考
