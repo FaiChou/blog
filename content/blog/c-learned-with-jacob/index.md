@@ -486,3 +486,119 @@ person *hash_table_delete(char *name) {
   return NULL;
 }
 ```
+
+
+## 6. Makefile
+
+当 GCC 遇到 .c 文件时，它会执行预处理、编译、汇编和链接四个步骤，除非你特别指定只做某个阶段（例如，使用 -c 选项只编译但不链接）。
+
+当 GCC 遇到 .o（对象）文件时，它知道这些文件已经经过了编译和汇编，因此只需进行链接。
+
+当 .c 和 .o 文件同时出现时，GCC 会先将 .c 文件预处理、编译、汇编成 .o 文件，然后将所有的 .o 文件链接成一个可执行文件。
+
+```
+gcc -c main.c
+gcc -o main main.c
+gcc -c -o my_object.o main.c
+gcc -o my_program foo.o bar.o
+```
+
+第一条会编译成 main.o，不进行链接。
+第二条会编译链接生成 main 可执行文件。
+第三条会编译 main.c 并生成一个名为 my_object.o 的目标文件。
+第四条会链接 foo.o 和 bar.o 生成 my_program 程序。
+
+在 Makefile 中，`$@` 代表目标文件名，`$^` 会展开依赖文件，`$<` 表示所有依赖文件中的第一个。
+
+看下面这个完整例子:
+
+
+```
+my_project/
+|-- main.c
+|-- main.h
+|-- foo.c
+|-- foo.h
+|-- Makefile
+```
+
+```
+CC = gcc
+CFLAGS = -Wall
+
+TARGET = my_program
+SRC = main.c foo.c
+OBJ = $(SRC:.c=.o)
+
+all: $(TARGET)
+
+$(TARGET): $(OBJ)
+    $(CC) $(CFLAGS) -o $@ $^
+
+%.o: %.c %.h
+    $(CC) $(CFLAGS) -c $< -o $@
+
+clean:
+    rm -f $(OBJ) $(TARGET)
+```
+
+`$(SRC:.c=.o)` 会展开成 `main.o foo.o`。
+`%.o: %.c %.h` 表示匹配所有的 `.o .c .h` 文件，比如 `$(TARGET): $(OBJ)` 展开后是 `myp_grogram: main.o foo.o`，但是项目中没有，则会去找 ``%.o: %.c %.h` 这条去生成。
+
+## 7. 静态库动态库
+
+#### 静态库 (.a, .lib)
+
+.a：用于 Unix 和 Unix-like 操作系统（如 Linux 和 macOS）的静态库文件。生成命令: `ar rcs libmylibrary.a file1.o file2.o`。
+
+.lib：在 Windows 平台上，这通常是静态库文件。生成命令: `lib /OUT:mylibrary.lib file1.obj file2.obj`。
+
+
+#### 动态库 (.so, .dylib)
+
+.so：这是 Linux 和其他 Unix-like 操作系统的动态链接库（Shared Object）。生成命令: `gcc -shared -o libmylibrary.so file1.o file2.o`。
+
+.dylib：这是 macOS 特有的动态库。生成命令: `gcc -dynamiclib -o libmylibrary.dylib file1.o file2.o`。
+
+
+静态库在链接时，库中的代码会被复制到最终的可执行文件中。这会使得可执行文件变大，但它是自包含的，不依赖于外部库。
+动态库在链接时不会将代码复制到可执行文件中。运行时，可执行文件会查找动态库并动态地链接。这样可以减小可执行文件的大小，但如果动态库不存在或版本不匹配，程序将无法运行。
+
+
+#### 例子
+
+假设有一个 foo.h 头文件，内容如下：
+
+```c
+// foo.h
+#ifndef FOO_H
+#define FOO_H
+
+void say_hello();
+
+#endif
+```
+
+以及一个 foo.c 源文件，内容如下：
+
+```c
+// foo.c
+#include "foo.h"
+#include <stdio.h>
+
+void say_hello() {
+    printf("Hello, world!\n");
+}
+```
+
+生成静态库（Unix-like 系统）:
+
+1. 编译 `foo.c` 为目标文件 `foo.o`: `gcc -c foo.c -o foo.o`
+2. 生成 `.a` 静态库: `ar rcs libfoo.a foo.o`
+
+生成动态库（Unix-like 系统）:
+
+1. 编译 `foo.c` 为共享目标文件：`gcc -fPIC -c foo.c -o foo.o`
+2. 生成 `.so` 动态库: `gcc -shared -o libfoo.so foo.o`
+
+在分发库文件（例如`libfoo.a`或`libfoo.so`）时，也应该分发`foo.h`头文件。这样，其他开发者可以通过包含这个头文件并链接到相应的库，来使用 `say_hello` 函数。
