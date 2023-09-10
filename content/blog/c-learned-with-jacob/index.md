@@ -673,6 +673,22 @@ hash_table *hash_table_create(uint32_t size, hashfuncion *hf, cleanupfunction *c
 }
 ```
 
+当然上述 `typedef` 也可以改成:
+
+```c
+typedef void (*cleanupfunction)(void *);
+hash_table *hash_table_create(uint32_t size, hashfuncion *hf, cleanupfunction cf);
+
+hash_table *hash_table_create(uint32_t size, hashfuncion *hf, cleanupfunction cf) {
+  // ...
+  if (cf) {
+    ht->cleanup = cf;
+  } else {
+    hf->cleanup = free;
+  }
+}
+```
+
 #### hashtable 的结构
 
 ```c
