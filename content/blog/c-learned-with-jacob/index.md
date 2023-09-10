@@ -640,3 +640,55 @@ p->a[3]
 
 ![C Operator Precedence](operators.png)
 
+## A better hashtable
+
+在[这一章节中](https://www.youtube.com/watch?v=KI_V91UdL1I&list=PL9IEJIKnBJjFiudyP6wSXmykrn67Ykqib&index=22)，Jacob 老师实现了一个更 general 的 hashtable，前面章节有一个漏掉的知识点，使用链表搭配 Hashtable 来处理碰撞问题，具体实现逻辑可以[在这里](https://github.com/FaiChou/c-tutorial/blob/main/hashtable_ll.c)查看。
+
+这一章节的知识点:
+
+1. 如果实现一个规范的库，.h 里定义暴露出去的方法和类型，.c 里包含方法的实现，以及不需要暴露出去的方法使用 static 修饰。
+2. Makefile 怎么写，规范库中需要包含 test 文件，如何打包静态库和动态库等。
+3. 在 .h 中用到的类型: `typedef struct _hash_table hashtable;` 则在 .c 中只需要实现 `struct _hash_table {};`
+4. 参数传递函数，使用 `typedef uint64_t (hashfunction) (const char *, size_t);` 然后 `size_t foo(hashfunction *hf)`
+5. `strdup` 来替代 `malloc() + strcpy()` 初始化一个字符串的副本。
+6. `strcspn` 用来查找一个字符串中第一个出现在另一个给定字符串中的字符的位置。
+7. cleanup 的作用
+
+#### cleanup 的作用
+
+在 hashtable 的实现中，最后需要释放空间防治内存泄露，但有些内存不一定是在 heap 中，所以到底应不应该释放取决于具体的实现。
+这时候就需要传递一个 cleanup 函数来让调用者决定如何释放这些内存:
+
+```c
+typedef void cleanupfunction(void *);
+hash_table *hash_table_create(uint32_t size, hashfuncion *hf, cleanupfunction *cf);
+
+hash_table *hash_table_create(uint32_t size, hashfuncion *hf, cleanupfunction *cf) {
+  // ...
+  if (cf) {
+    ht->cleanup = cf;
+  } else {
+    hf->cleanup = free;
+  }
+}
+```
+
+#### hashtable 的结构
+
+```c
+typedef struct entry {
+  char *key;
+  size_t keylength;
+  void *object;
+  struct entry *next;
+} entry;
+
+struct _hash_table {
+  uint32_t size;
+  hashfunction *hash;
+  entry **elements;
+}
+```
+
+为什么是 `entry **elements;`? 因为在 heap 上创建的数据只能用 pointer 来代表，要创建一个列表，则通过 `entry **` 来代表（或者`entry *elements[]`）更明确地表达了“这是一个数组”的意图。
+
