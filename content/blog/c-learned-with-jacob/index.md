@@ -730,6 +730,7 @@ struct _hash_table {
 13. watch: 设置观察点，当观察的变量值改变时停止执行
 14. list 或 l: 显示源代码
 15. x 命令用于“examine”检查内存中的内容，`x/[数量][格式][大小] 地址`，比如查看一个以十六进制表示的单一字节：`x/bx ptr`
+16. Conditional Breakpoints: `watch count if count > 10` `break a.c:30 if (x > 25)` and so on
 
 
 lldb（LLVM Debugger）和 GDB 一样用于调试，除了 C 和 C++，还支持 Objective-C 和 Swift。
