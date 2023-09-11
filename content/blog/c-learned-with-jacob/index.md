@@ -708,3 +708,30 @@ struct _hash_table {
 
 为什么是 `entry **elements;`? 因为在 heap 上创建的数据只能用 pointer 来代表，要创建一个列表，则通过 `entry **` 来代表（或者`entry *elements[]`）更明确地表达了“这是一个数组”的意图。
 
+
+## GDB debug
+
+首先使用 GDB 调试前，需要在编译时候使用 `-g` 标志让编译器生成带有调试信息的可执行文件。这样，gdb 才能正确地映射到源代码的行号、变量名等信息，使得更方便地进行调试。
+
+常用命令:
+
+1. run 或者 r 来启动程序
+2. continue 或者 c 从当前停止处继续运行程序
+3. kill 终止当前调试的程序
+4. quit 或 q 退出 gdb
+5. help 显示帮助信息
+6. break 或 b 设置断点，比如 b main (main函数) 或者 b 12 (12行)
+7. info breakpoints 或 info b 列出所有设置的断点
+8. delete 删除断点，例如，delete 1 删除编号为 1 的断点。也可以删除 watch
+9. step 或 s: 执行下一行代码，如果有函数调用则进入函数，比如 foo() 执行 step 会进入 foo 内部停住
+10. next 或 n: 执行下一行代码，跳过函数调用，比如 foo() 执行 next 会直接执行完 foo() 到下一行
+11. finish: 从当前函数中退出
+12. print 或 p: 打印表达式的值。例如，print x 打印变量 x 的值
+13. watch: 设置观察点，当观察的变量值改变时停止执行
+14. list 或 l: 显示源代码
+15. x 命令用于“examine”检查内存中的内容，`x/[数量][格式][大小] 地址`，比如查看一个以十六进制表示的单一字节：`x/bx ptr`
+
+
+lldb（LLVM Debugger）和 GDB 一样用于调试，除了 C 和 C++，还支持 Objective-C 和 Swift。
+
+Valgrind 是一个用于内存调试、内存泄露检测和性能分析的开源工具。`valgrind ./my_program` 会运行 `my_program` 并报告各种内存问题。
