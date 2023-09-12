@@ -731,6 +731,8 @@ struct _hash_table {
 14. list 或 l: 显示源代码
 15. x 命令用于“examine”检查内存中的内容，`x/[数量][格式][大小] 地址`，比如查看一个以十六进制表示的单一字节：`x/bx ptr`
 16. Conditional Breakpoints: `watch count if count > 10` `break a.c:30 if (x > 25)` and so on
+17. backtrace 或 bt 显示调用堆栈
+18. frame 或 f: 选择堆栈帧。例如，frame 2 切换到编号为 2 的堆栈帧
 
 
 lldb（LLVM Debugger）和 GDB 一样用于调试，除了 C 和 C++，还支持 Objective-C 和 Swift。
