@@ -33,6 +33,9 @@ emoji: "🛜"
 bind 用于绑定套接字到一个本地地址和端口，本地地址可以是所有可用的接口（INADDR_ANY）。
 这样有客户端向绑定的地址+端口发送消息时候可以被这个 socket 收到。
 
+在客户端 Socket 中如果不进行 `bind`, 直接调用 `connect`, 则系统会自动分配一个可用的 ip 和端口来匿名绑定。
+如果使用 `setsockopt` 设置 `SO_BINDTODEVICE`，则是为 Socket 绑定到一个特定的网络设备（如 eth0, wlan0 等），绕过路由表通常是用这种设置，直接指定数据包通过哪个网络设备进出。
+如果使用 `bind` 来绑定 en0 的 ip, 然后进行 `connect` 一个服务器地址，但这个服务器地址经过路由表查询是从 wlan0 口出去，则进行 connect 时候可能会出错。而使用 `SO_BINDTODEVICE` 则强制绑定使用哪个网口。
 ## listen(sockfd, 5)
 
 listen 用于监听，一般用于 bind 之后，和 accept 之前。
