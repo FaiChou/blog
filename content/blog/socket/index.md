@@ -185,23 +185,23 @@ while (1) {
 }
 ```
 
-再补充一下，在 clash 设置中，如果开启了增强模式，则会监听 0.0.0.0:53，使用 dig 命令可以进行测试：
+再补充一下，在 clash 设置中，如果开启了增强模式，则会强制监听 `0.0.0.0:53`，即使不写 `listen: 0.0.0.0:53` 或者改成其他的，都不起作用，使用 dig 命令可以进行测试：
 
 ```
-~ dig @192.168.11.109 -p 53 baidu.com
-~ dig @127.0.0.1 -p 53 google.com
-~ dig @198.18.0.1 -p 53 youtube.com
-~ dig @198.18.0.2 -p 53 fb.com
-~ dig @198.18.0.3 -p 53 twitter.com
-~ dig @198.18.0.4 -p 53 facebook.com
-~ dig @198.18.0.5 -p 53 telegram.com
+dig @192.168.11.109 -p 53 baidu.com
+dig @127.0.0.1 -p 53 google.com
+dig @198.18.0.1 -p 53 youtube.com
+dig @198.18.0.2 -p 53 fb.com
+dig @198.18.0.3 -p 53 twitter.com
+dig @198.18.0.4 -p 53 facebook.com
+dig @198.18.0.5 -p 53 telegram.com
 ```
 
 可以看结果，前四条（都是本地的网口）地址，返回的 dns 解析结果都是 `198.18.x.x`，这肯定是 fakeip 的结果。
 
 而下面三条则是其余的 ip，可能是 198.18.0.3/4/5 没有找到正确的解析，则使用了其余的 nameserver。
 
-也可以通过更改 clash 配置: `listen: 0.0.0.0:5431` 不开启增强模式执行:
+`listen: 0.0.0.0:5431` 不开启增强模式执行:
 
 ```
 dig @192.168.11.109 -p 5431 twitter.com
