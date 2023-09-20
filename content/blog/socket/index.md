@@ -36,6 +36,7 @@ bind 用于绑定套接字到一个本地地址和端口，本地地址可以是
 在客户端 Socket 中如果不进行 `bind`, 直接调用 `connect`, 则系统会自动分配一个可用的 ip 和端口来匿名绑定。
 如果使用 `setsockopt` 设置 `SO_BINDTODEVICE`，则是为 Socket 绑定到一个特定的网络设备（如 eth0, wlan0 等），绕过路由表通常是用这种设置，直接指定数据包通过哪个网络设备进出。
 如果使用 `bind` 来绑定 en0 的 ip, 然后进行 `connect` 一个服务器地址，但这个服务器地址经过路由表查询是从 wlan0 口出去，则进行 connect 时候可能会出错。而使用 `SO_BINDTODEVICE` 则强制绑定使用哪个网口。
+
 ## listen(sockfd, 5)
 
 listen 用于监听，一般用于 bind 之后，和 accept 之前。
@@ -45,7 +46,7 @@ listen 用于监听，一般用于 bind 之后，和 accept 之前。
 
 `accept` 会阻塞程序，等待客户端请求的到来。当客户端请求到来后，会将客户端的地址信息保存在 `cliaddr` 中，并且 `accept` 返回一个新的 socket file descriptor，这个 `newfd` 用来处理当前请求。
 
-通常 `bind+listen+accept` 用于服务端。`listen+accept` 用于**通信套接字**，和开始的**监听套接字**做区分隔离。
+通常 `bind+listen+accept` 用于服务端**监听套接字**；而 `listen+accept` 用于**通信套接字**。
 
 当新的请求到来后使用 `while(read(newfd, recvline, MAXLINE-1)>0)` 来读取请求发送来的数据，如果发送完毕，则读取结束后连接关闭(0)，跳出循环。或者遇到错误返回 -1 也会跳出循环。
 
