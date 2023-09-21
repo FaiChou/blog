@@ -175,5 +175,5 @@ function useNavigationState(selector) {
 
 这里为什么要用 ref 来存储 `selector`?
 
-因为下面的 `useEffect` 里面要使用, 如果不用 `ref+useEffect` 来更新而直接使用 selector, 则下面的 `useEffect(()=>{},[navigation])` 里永远是上一次 navigation 变化时候的旧 selector, 每次传入的函数都是变化的, 当然也有可能传入的不是纯函数, 因此这种情况尤为重要.
+因为下面的 `useEffect` 里面要使用, 如果不用 `ref+useEffect` 来更新而直接使用 selector, 则该监听器会捕获组件挂载时的 selector，而不会随后续 selector 的更新而更新, 每次传入的函数都是变化的, 而 useRef 不会导致组件重新渲染，这有助于提高性能。
 
