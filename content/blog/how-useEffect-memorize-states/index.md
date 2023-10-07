@@ -136,7 +136,7 @@ function useRef(val) {
 ```javascript
 function usePrevious(v) {
   const p = useRef(v);
-  useEffect(() => p.current = v);
+  useEffect(() => p.current = v, [v]);
   return p.current;
 }
 ```
