@@ -46,9 +46,117 @@ listen 用于监听，一般用于 bind 之后，和 accept 之前。
 
 `accept` 会阻塞程序，等待客户端请求的到来。当客户端请求到来后，会将客户端的地址信息保存在 `cliaddr` 中，并且 `accept` 返回一个新的 socket file descriptor，这个 `newfd` 用来处理当前请求。
 
-通常 `bind+listen+accept` 用于服务端**监听套接字**；而 `listen+accept` 用于**通信套接字**。
+~~通常 `bind+listen+accept` 用于服务端**监听套接字**；而 `listen+accept` 用于**通信套接字**。~~
+
+通常情况下，服务端使用一个“监听套接字”来等待连接请求，然后为每一个接入的客户端创建一个新的“通信套接字”。
+
+“监听套接字”主要用于 `bind()`、`listen()` 和 `accept()`。
+
+“通信套接字”主要用于与特定客户端的数据传输，如使用 `send()` 和 `recv()`。
+
+因此，`bind+listen+accept` 是用于初始化和管理服务端的“监听套接字”的，而新创建出来的套接字（通过 `accept()` 返回）则是“通信套接字”，用于与特定客户端进行数据交换。
 
 当新的请求到来后使用 `while(read(newfd, recvline, MAXLINE-1)>0)` 来读取请求发送来的数据，如果发送完毕，则读取结束后连接关闭(0)，跳出循环。或者遇到错误返回 -1 也会跳出循环。
+
+## 例子
+
+#### 服务端
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+
+#define MAXLINE 1024
+
+int main() {
+    int server_sock, client_sock;
+    struct sockaddr_in server_address, client_address;
+    socklen_t client_len;
+    char recvline[MAXLINE];
+
+    // 创建socket
+    server_sock = socket(AF_INET, SOCK_STREAM, 0);
+
+    // 设置server_address
+    server_address.sin_family = AF_INET;
+    server_address.sin_port = htons(8080);
+    server_address.sin_addr.s_addr = INADDR_ANY;
+
+    // bind
+    bind(server_sock, (struct sockaddr*)&server_address, sizeof(server_address));
+
+    // listen
+    listen(server_sock, 3);
+
+    printf("Listening on port 8080...\n");
+
+    // accept
+    client_len = sizeof(client_address);
+    client_sock = accept(server_sock, (struct sockaddr*)&client_address, &client_len);
+
+    // recv & send
+    while (read(client_sock, recvline, MAXLINE-1) > 0) {
+        printf("Received: %s\n", recvline);
+        send(client_sock, recvline, strlen(recvline), 0);
+    }
+
+    close(client_sock);
+    close(server_sock);
+    return 0;
+}
+
+```
+
+#### 客户端
+
+```c
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <unistd.h>
+#include <arpa/inet.h>
+#include <netinet/in.h>
+
+#define MAXLINE 1024
+
+int main() {
+    int client_sock;
+    struct sockaddr_in server_address;
+    char sendline[MAXLINE], recvline[MAXLINE];
+
+    // 创建socket
+    client_sock = socket(AF_INET, SOCK_STREAM, 0);
+
+    // 设置server_address
+    server_address.sin_family = AF_INET;
+    server_address.sin_port = htons(8080);
+    server_address.sin_addr.s_addr = inet_addr("127.0.0.1");
+
+    // connect
+    connect(client_sock, (struct sockaddr*)&server_address, sizeof(server_address));
+
+    while (1) {
+        printf("Enter message: ");
+        fgets(sendline, MAXLINE, stdin);
+
+        // send
+        send(client_sock, sendline, strlen(sendline), 0);
+
+        // recv
+        if (read(client_sock, recvline, MAXLINE-1) > 0) {
+            printf("Received from server: %s\n", recvline);
+        }
+    }
+
+    close(client_sock);
+    return 0;
+}
+
+```
 
 
 ## 理解 ClashX Pro 开启增强模式后的行为
@@ -212,7 +320,7 @@ dig @198.18.0.1 -p 53 youtube.com
 
 则前两条能收到 fakeip 的结果，最后一条没有结果。
 
-如果删掉 `listen: ` 这条规则，则经过测试是没有 dns 服务器的。
+如果删掉 `listen:` 这条规则，则经过测试是没有 dns 服务器的。
 
 总结：
 
