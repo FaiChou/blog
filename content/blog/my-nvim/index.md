@@ -12,14 +12,18 @@ $ alias vi="nvim"
 
 ## Install NeoVIM
 
+```
 $ brew install neovim
+```
 
 ## Install some dependencies
 
+```
 $ brew install lazygit
 $ brew install ripgrep
 $ brew tap homebrew/cask-fonts
 $ brew install font-hack-nerd-font
+```
 
 Also need set the iTerm2 font to `font-hack-nerd-font`.
 
