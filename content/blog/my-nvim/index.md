@@ -1,0 +1,79 @@
+---
+title: "My NVIM"
+date: "2023-10-13"
+category: "dev"
+emoji: "🦹‍♀️"
+---
+
+
+```
+$ alias vi="nvim"
+```
+
+## Install NeoVIM
+
+$ brew install neovim
+
+## Install some dependencies
+
+$ brew install lazygit
+$ brew install ripgrep
+$ brew tap homebrew/cask-fonts
+$ brew install font-hack-nerd-font
+
+Also need set the iTerm2 font to `font-hack-nerd-font`.
+
+## Install LazyVIM
+
+follow this: https://www.lazyvim.org/installation
+
+## Shortcuts
+
+Escape some vim shortcuts..
+
+`cmd+/` to show cursor(which is iTerm2 feature, not vim)
+
+`ctrl+hjkl` move between windows
+
+`ctrl+up down left right` set app window size or position(which is Raycast feature, not vim)
+
+`shift+h l` swap buffers, which `[b` `]b` `<leader>bb` also do the same
+
+`<leader>bd` close buffer
+
+`<c-s>` save file
+
+`K` or `<leader>K` keywordprg, to show the function/keyword man page
+
+`<leader>l` lazy
+
+`<leader>fn` new file
+
+`<leader>cf` code format
+
+`<leader>gg` lazygit
+
+`<leader>qq` quit all
+
+`c-/` toggle terminal on float window
+
+`<leader>w` for windows
+
+`<leader>-` `<leader>|` split window vertical horizontal
+
+`<leader><tab>` for tabs
+
+`gd` go definition, gD(eclaration), gl(mplementation), gr(eference)
+
+`s` flash search
+
+`S` block selection
+
+`<leader>e` toggle neo-tree, also in tree, using `?` to show help
+
+`<leader>,` check buffers
+
+`<leader>/` root dir grep find
+
+`<leader><space>` find file, same as `<leader>ff`
+
