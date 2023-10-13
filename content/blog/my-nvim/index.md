@@ -81,3 +81,35 @@ Escape some vim shortcuts..
 
 `<leader><space>` find file, same as `<leader>ff`
 
+
+## My set
+
+```
+// plugins/neotree.lua
+return {
+  "nvim-neo-tree/neo-tree.nvim",
+  opts = {
+    window = {
+      mappings = {
+        ["o"] = "open",
+      },
+    },
+  },
+}
+```
+
+```
+// config/keymaps.lua
+local map = vim.keymap.set
+map("i", "<C-f>", "<right>", { desc = "go forward" })
+map("i", "<C-b>", "<left>", { desc = "go backward" })
+map("i", "<C-n>", "<down>", { desc = "go down a line" })
+map("i", "<C-p>", "<up>", { desc = "go up a line" })
+map("i", "<C-d>", "<right><bs>", { desc = "delete back a character" })
+```
+
+```
+// config/options.lua
+local opt = vim.opt
+opt.relativenumber = false
+```
