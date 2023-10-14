@@ -83,6 +83,8 @@ Escape some vim shortcuts..
 
 `<leader>fr` find recent files
 
+`gcc` comment & cancel comment, also works in v mode
+
 ## Insert mode
 
 `<C-w>` delete before word
