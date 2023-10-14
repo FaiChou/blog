@@ -83,6 +83,16 @@ Escape some vim shortcuts..
 
 `<leader>fr` find recent files
 
+## Insert mode
+
+`<C-w>` delete before word
+
+`<C-c>` quit insert mode
+
+`<C-r>` 0 paste with register 0(copied)
+
+`<C-j>` or `<C-m>` new line
+
 
 ## My set
 
