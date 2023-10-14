@@ -46,6 +46,7 @@ $ vim --version | grep "clipboard"
 ```bash
 <ESC>        # to normal mode
 :q           # quit
+shift z z    # quit
 :wq / :x     # save and close
 :qa          # close all
 :q!          # close file, abandon changes
@@ -221,6 +222,7 @@ ciw<C-R>0<ESC> # change 'second' replace with first
 ```bash
 .    # repeat last change
 u    # undo
+<C-r> # redo
 
 ;    # line find repeat
 ,    # line find previous repeat
