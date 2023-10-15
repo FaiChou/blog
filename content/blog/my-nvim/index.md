@@ -67,7 +67,7 @@ Escape some vim shortcuts..
 
 `<leader><tab>` for tabs
 
-`gd` go definition, gD(eclaration), gl(mplementation), gr(eference)
+`gd` go definition, gD(eclaration)
 
 `s` flash search
 
