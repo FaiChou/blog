@@ -57,6 +57,8 @@ Escape some vim shortcuts..
 
 `<leader>gg` lazygit
 
+`<leader>ghb` git blame
+
 `<leader>qq` quit all
 
 `c-/` toggle terminal on float window
@@ -84,6 +86,8 @@ Escape some vim shortcuts..
 `<leader>fr` find recent files
 
 `gcc` comment & cancel comment, also works in v mode
+
+`{visual}gJ` join lines
 
 ## Insert mode
 
