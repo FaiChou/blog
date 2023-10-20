@@ -71,9 +71,11 @@ Escape some vim shortcuts..
 
 `gd` go definition, gD(eclaration)
 
-`s` flash search
+~~`s` flash search `S` block selection~~
 
-`S` block selection
+`s` for replace character and insert mode
+
+`S` for delete current line and insert mode
 
 `<leader>e` toggle neo-tree, also in tree, using `?` to show help
 
