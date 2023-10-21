@@ -89,7 +89,7 @@ Escape some vim shortcuts..
 
 `gcc` comment & cancel comment, also works in v mode
 
-`{visual}gJ` join lines
+`{visual}gJ` join lines, `:.j` join current line and next line, `:%j` all line join, `:.,+4j`, `:.,$j`..
 
 `gf` open file on cursor
 
