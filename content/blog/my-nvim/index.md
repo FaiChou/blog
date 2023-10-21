@@ -91,6 +91,16 @@ Escape some vim shortcuts..
 
 `{visual}gJ` join lines
 
+`gf` open file on cursor
+
+`gv` re-select last visual text
+
+`:%y` copy all file text, also `%` is a read-only register for file name
+
+`:vertical resize +10` increase current window size if there's vertical (left right) windows
+
+`resize +10` increase current window size if there's horizontal windows(up and down)
+
 ## Insert mode
 
 `<C-w>` delete before word
