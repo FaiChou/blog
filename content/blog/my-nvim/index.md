@@ -111,6 +111,8 @@ Escape some vim shortcuts..
 
 `<C-j>` or `<C-m>` new line
 
+`]p` paste with auto format
+
 
 ## My set
 
