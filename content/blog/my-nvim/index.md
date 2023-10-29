@@ -101,6 +101,8 @@ Escape some vim shortcuts..
 
 `resize +10` increase current window size if there's horizontal windows(up and down)
 
+`<c-space>` to increase selection
+
 ## Insert mode
 
 `<C-w>` delete before word
