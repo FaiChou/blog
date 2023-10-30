@@ -105,6 +105,8 @@ Escape some vim shortcuts..
 
 `<c-space>` to increase selection
 
+`]p` paste with auto format
+
 ## Insert mode
 
 `<C-w>` delete before word
@@ -114,8 +116,6 @@ Escape some vim shortcuts..
 `<C-r>` 0 paste with register 0(copied)
 
 `<C-j>` or `<C-m>` new line
-
-`]p` paste with auto format
 
 
 ## My set
