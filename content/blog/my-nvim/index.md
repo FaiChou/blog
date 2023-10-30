@@ -31,6 +31,8 @@ Also need set the iTerm2 font to `font-hack-nerd-font`.
 
 follow this: https://www.lazyvim.org/installation
 
+Here's my configration: https://github.com/FaiChou/my-lazy-nvim
+
 ## Shortcuts
 
 Escape some vim shortcuts..
