@@ -218,24 +218,39 @@ faxxxxxxxh@gmail.com	yx
 ```bash
 #!/bin/bash
 
-set -e
+LOGFILE=~/Library/Logs/update_rime_and_deploy.log
+mkdir -p ~/Library/Logs
 
-cd ~/Projects/GitHub/plum
+log() {
+    level=$1
+    shift
+    msg="$@"
+    date=$(date "+%Y-%m-%d %H:%M:%S")
+    echo "[$date] [$level] $msg" >> "$LOGFILE"
+}
 
-echo -e "\033[34mUpdating 㞢... \033[0m"
+{
+    set -e
 
-bash rime-install iDvel/rime-ice:others/recipes/all_dicts
-bash rime-install iDvel/rime-ice:others/recipes/opencc
+    cd ~/Projects/GitHub/plum
 
-sleep 3
+    log "INFO" "Updating 㞢..."
 
-echo -e "\033[34mSyncing 㞢... \033[0m"
-/Library/Input\ Methods/Squirrel.app/Contents/MacOS/Squirrel --sync
+    bash rime-install iDvel/rime-ice:others/recipes/all_dicts
+    bash rime-install iDvel/rime-ice:others/recipes/opencc
 
-echo -e "\033[34mDeploying 㞢... \033[0m"
-/Library/Input\ Methods/Squirrel.app/Contents/MacOS/Squirrel --reload
+    sleep 3
 
-osascript -e 'display notification "Rime deployment succeeded 🍻" with title "Plum Update"'
+    log "INFO" "Syncing 㞢..."
+    /Library/Input\ Methods/Squirrel.app/Contents/MacOS/Squirrel --sync
+
+    log "INFO" "Deploying 㞢..."
+    /Library/Input\ Methods/Squirrel.app/Contents/MacOS/Squirrel --reload
+
+    osascript -e 'display notification "Rime deployment succeeded 🍻" with title "Plum Update"'
+
+    log "INFO" "Rime deployment succeeded"
+} 2>&1
 ```
 
 这段脚本保存在 `~/bin/update_rime_and_deploy.sh` 中, 然后新建一个 `/Library/LaunchDaemons/com.faichou.rime.plist`:
