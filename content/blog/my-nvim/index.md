@@ -107,6 +107,10 @@ Escape some vim shortcuts..
 
 `]p` paste with auto format
 
+`Ctrl+o` jump back
+
+`Ctrl+i` jump ahead
+
 ## Insert mode
 
 `<C-w>` delete before word
