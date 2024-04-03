@@ -253,7 +253,7 @@ log() {
 } 2>&1
 ```
 
-这段脚本保存在 `~/bin/update_rime_and_deploy.sh` 中, 然后新建一个 `/Library/LaunchDaemons/com.faichou.rime.plist`:
+这段脚本保存在 `~/bin/update_rime_and_deploy.sh` 中, 然后新建一个 `~/Library/LaunchAgents/com.faichou.rime.plist`:
 
 ```
 <?xml version="1.0" encoding="UTF-8"?>
@@ -282,8 +282,8 @@ log() {
 命令执行:
 
 ```bash
-sudo chown root:wheel /Library/LaunchDaemons/com.faichou.rime.plist
-sudo launchctl load /Library/LaunchDaemons/com.faichou.rime.plist
+chmod +x ~/bin/update_rime_and_deploy.sh
+launchctl load /Library/LaunchDaemons/com.faichou.rime.plist
 ```
 
 这样, 每天中午12点就会自动更新词库, 并自动同步配置, 自动部署.
