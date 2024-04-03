@@ -207,7 +207,7 @@ faxxxxxxxh@gmail.com	yx
 这样就和系统自带的 `Text Replacement` 功能一样了. 因为我用双拼, 需要在 `custom_phrase_double.txt` 里面创建, 而不是默认的 `custom_phrase.txt`.
 
 
-# 自动更新词库与部署
+## 5. 自动更新词库与部署
 
 虽然说 Rime 是一款功能齐全的输入法, 但如果没有词库, 还不如直接使用系统的输入法, 没有了词库便没有了灵魂, 搜狗输入法这种联网的会担心隐私问题, 所以 Rime + 词库能解决, 需要将词库下载到本地库中, 当然还有一些表情符号等.
 
@@ -289,7 +289,7 @@ sudo launchctl load /Library/LaunchDaemons/com.faichou.rime.plist
 这样, 每天中午12点就会自动更新词库, 并自动同步配置, 自动部署.
 
 
-# Refs
+## Refs
 
 - [Rime 配置：雾凇拼音](https://dvel.me/posts/rime-ice/#%e5%9f%ba%e6%9c%ac%e5%a5%97%e8%b7%af)
 - [Schema.yaml 詳解](https://github.com/LEOYoon-Tsaw/Rime_collections/blob/master/Rime_description.md)
