@@ -137,7 +137,10 @@ class BlogPostTemplate extends React.Component {
               __html: twemoji.parse(emoji || "😺", {
                 folder: "svg",
                 ext: ".svg"
-              })
+              }).replace(
+                'twemoji.maxcdn.com/v',
+                'cdnjs.cloudflare.com/ajax/libs/twemoji',
+              )
             }}
           />
           <ContentMain>

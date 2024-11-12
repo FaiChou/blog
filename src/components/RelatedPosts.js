@@ -73,6 +73,10 @@ const RelatedPostCard = ({ node }) => {
     folder: "svg",
     ext: ".svg"
   });
+  emoji.replace(
+    'twemoji.maxcdn.com/v',
+    'cdnjs.cloudflare.com/ajax/libs/twemoji',
+  );
 
   return (
     <PostCardWrapper>
