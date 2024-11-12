@@ -71,13 +71,9 @@ const RelatedPostCard = ({ node }) => {
   const title = node.frontmatter.title || node.fields.slug;
   const emoji = twemoji.parse(node.frontmatter.emoji || "🐱", {
     folder: "svg",
-    ext: ".svg"
+    ext: ".svg",
+    base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
   });
-  emoji.replace(
-    'twemoji.maxcdn.com/v',
-    'cdnjs.cloudflare.com/ajax/libs/twemoji',
-  );
-
   return (
     <PostCardWrapper>
       <Link to={node.fields.slug} className="post-card-link">

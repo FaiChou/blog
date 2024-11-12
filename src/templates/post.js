@@ -136,11 +136,9 @@ class BlogPostTemplate extends React.Component {
             dangerouslySetInnerHTML={{
               __html: twemoji.parse(emoji || "😺", {
                 folder: "svg",
-                ext: ".svg"
-              }).replace(
-                'twemoji.maxcdn.com/v',
-                'cdnjs.cloudflare.com/ajax/libs/twemoji',
-              )
+                ext: ".svg",
+                base: 'https://cdn.jsdelivr.net/gh/twitter/twemoji@14.0.2/assets/'
+              })
             }}
           />
           <ContentMain>
