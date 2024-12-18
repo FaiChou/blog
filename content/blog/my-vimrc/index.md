@@ -230,3 +230,29 @@ filetype on
 
 ```
 
+## Pure vimrc
+
+```bash
+set number                  " 显示行号
+set cursorline              " 高亮当前行
+set autoindent              " 自动缩进
+set smartindent             " 智能缩进
+set tabstop=2               " 设置 Tab 宽度为2个空格
+set shiftwidth=2            " 每次自动缩进的宽度为2个空格
+set expandtab               " 将 Tab 替换为空格
+
+set ignorecase              " 搜索时忽略大小写
+set smartcase               " 智能区分大小写
+set hlsearch                " 高亮搜索结果
+set incsearch               " 搜索时逐字符高亮
+
+syntax on                   " 启用语法高亮
+set background=dark         " 适合深色背景的配色方案
+colorscheme desert          " 使用 desert 配色（可替换为其他配色方案）
+
+set timeoutlen=500          " 设置按键延迟时间为500ms
+set updatetime=300          " 设置更新屏幕间隔时间为300ms
+
+highlight EndOfBuffer ctermbg=NONE guibg=NONE
+highlight Normal ctermbg=NONE guibg=NONE
+```
