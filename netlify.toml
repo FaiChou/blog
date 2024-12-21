@@ -1,0 +1,2 @@
+[build]
+  command = "rm -rf node_modules && pyenv install 3.9 && pyenv global 3.9 && npm install && gatsby build"
