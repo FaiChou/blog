@@ -7,7 +7,7 @@ emoji: "🪵"
 
 ## 1. 修改主机名
 
-hostnamectl set-hostname 新的主机名
+`hostnamectl set-hostname 新的主机名`
 
 vi /etc/hosts # 将 127.0.1.1 旧主机名 改为 127.0.1.1 新主机名
 
@@ -22,7 +22,7 @@ PubkeyAuthentication yes
 PermitRootLogin prohibit-password
 ```
 
-重启 systemctl restart sshd
+重启 `systemctl restart sshd`
 
 ## 3. 配置 zsh & oh-my-zsh
 
@@ -62,7 +62,7 @@ export LS_OPTIONS='--color=auto'
 alias vi="vim"
 ```
 
-source ~/.zshrc
+`source ~/.zshrc`
 
 
 ## 5. 配置 .vimrc
@@ -91,7 +91,7 @@ set updatetime=300
 
 ## 6. 配置 .tmux.conf
 
-apt install -y tmux
+`apt install -y tmux`
 
 ```
 unbind C-b
