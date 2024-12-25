@@ -111,6 +111,7 @@ bind-key -n M-1 select-window -t 0
 bind-key -n M-2 select-window -t 1
 bind-key -n M-3 select-window -t 2
 
+set -g mouse on
 set -g status-left-length 30
 set -g status-right-length 30
 
