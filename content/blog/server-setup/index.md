@@ -106,6 +106,11 @@ bind-key -n M-Down select-pane -D
 bind-key -n M-Left select-pane -L
 bind-key -n M-Right select-pane -R
 
+bind-key -n M-0 select-window -t 0
+bind-key -n M-1 select-window -t 0
+bind-key -n M-2 select-window -t 1
+bind-key -n M-3 select-window -t 2
+
 set -g status-left-length 30
 set -g status-right-length 30
 
